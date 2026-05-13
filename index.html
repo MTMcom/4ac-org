@@ -814,6 +814,15 @@
     .view-controls .vc-label{display:none}
     /* Tag popover stays within viewport */
     .tag-popover{max-width:calc(100vw - 32px)}
+    /* Line view: wrap to 4-per-row so palette fills row 1 and status fills row 2.
+       Drop the swatch-color height from 140 to 96 so the cards aren't absurdly
+       tall at narrow widths. */
+    body.view-line .line-host{flex-wrap:wrap}
+    body.view-line .swatch,
+    body.view-line .status{flex:0 0 25%;grid-template-rows:96px 52px auto}
+    body.view-line .swatch-color,
+    body.view-line .status-color{height:96px}
+    body.view-line .status:first-of-type{border-left:0}
     /* Compatibility breakdown padding tightens */
     .breakdown{padding:16px}
     /* Toolbar buttons get a bit smaller */
