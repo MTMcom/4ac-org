@@ -1,0 +1,679 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - generic [ref=e6]: Palette Algorithm · Four methods · 2026
+          - heading "Modern color pairing, your method of choice." [level=1] [ref=e7]:
+            - text: Modern color pairing,
+            - text: your
+            - emphasis [ref=e8]: method
+            - text: of choice.
+          - paragraph [ref=e9]: "Drop in a single hex. Choose how the accents are picked: a weighted OKLCH scorer, classical HSL color theory, a curated material library, or a hybrid that falls back when math gets ugly."
+        - tablist "Calculation method" [ref=e10]:
+          - generic [ref=e11]:
+            - img [ref=e12]
+            - generic [ref=e15]: Pick a method · click to switch
+          - tab "Material Curated premium colors, ranked by fit." [selected] [ref=e16] [cursor=pointer]:
+            - generic [ref=e17]: Material
+            - generic [ref=e18]: Curated premium colors, ranked by fit.
+          - tab "HSL Math Classic color theory schemes." [ref=e19] [cursor=pointer]:
+            - generic [ref=e20]: HSL Math
+            - generic [ref=e21]: Classic color theory schemes.
+          - tab "Hybrid HSL math with material safety net." [ref=e22] [cursor=pointer]:
+            - generic [ref=e23]: Hybrid
+            - generic [ref=e24]: HSL math with material safety net.
+          - tab "OKLCH-Scored Weighted OKLCH scorer with sliders." [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: OKLCH-Scored
+            - generic [ref=e27]: Weighted OKLCH scorer with sliders.
+    - generic [ref=e28]:
+      - button "Share" [ref=e29] [cursor=pointer]:
+        - img [ref=e30]
+        - text: Share
+      - button "Export" [ref=e34] [cursor=pointer]:
+        - img [ref=e35]
+        - text: Export
+        - img [ref=e38]
+      - button "Reset" [ref=e40] [cursor=pointer]:
+        - img [ref=e41]
+        - text: Reset
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - textbox [ref=e48] [cursor=pointer]: "#5b6cff"
+          - generic [ref=e49]:
+            - generic [ref=e50]: Input color
+            - textbox [ref=e51]: "#5B6CFF"
+          - button "Tag your project" [ref=e54] [cursor=pointer]:
+            - img [ref=e55]
+            - generic [ref=e57]: Tag your project
+          - generic [ref=e58]:
+            - button "Indigo" [ref=e59] [cursor=pointer]
+            - button "Sky" [ref=e60] [cursor=pointer]
+            - button "Emerald" [ref=e61] [cursor=pointer]
+            - button "Amber" [ref=e62] [cursor=pointer]
+            - button "Red" [ref=e63] [cursor=pointer]
+            - button "Purple" [ref=e64] [cursor=pointer]
+            - button "Pink" [ref=e65] [cursor=pointer]
+            - button "Slate" [ref=e66] [cursor=pointer]
+        - generic [ref=e67]:
+          - generic [ref=e68]: Material Library
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - generic [ref=e71]: Filter
+              - generic [ref=e72]: All
+            - combobox [ref=e73] [cursor=pointer]:
+              - option "All materials" [selected]
+              - option "Warm only (brass, copper, oxblood)"
+              - option "Cool only (ink, forest, slate, plum)"
+              - option "Neutral only (ivory, charcoal, smoke)"
+              - option "Metallic only (brass, gold, copper)"
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - generic [ref=e76]: Sweet-spot center
+              - generic [ref=e77]: "0.22"
+            - slider [ref=e78]: "0.22"
+          - generic [ref=e79]:
+            - generic [ref=e80]:
+              - generic [ref=e81]: Min distance from primary
+              - generic [ref=e82]: "0.05"
+            - slider [ref=e83]: "0.05"
+      - generic "Each palette color plotted by hue (angle) and chroma (radius from center)" [ref=e84]:
+        - img:
+          - generic: P
+          - generic "A · contrast 1.16:1 vs primary"
+          - generic "A · contrast 1.16:1 vs primary"
+          - generic: A
+          - generic "A · contrast 1.45:1 vs primary"
+          - generic "A · contrast 1.45:1 vs primary"
+          - generic: A
+          - generic "A · contrast 1.32:1 vs primary"
+          - generic "A · contrast 1.32:1 vs primary"
+          - generic: A
+    - generic [ref=e86]:
+      - generic [ref=e87]: View
+      - tablist "View mode" [ref=e88]:
+        - tab "Grid" [selected] [ref=e89] [cursor=pointer]:
+          - img [ref=e90]
+          - text: Grid
+        - tab "Line" [ref=e95] [cursor=pointer]:
+          - img [ref=e96]
+          - text: Line
+      - generic [ref=e97]: Grades
+      - tablist "Show color grades 100 to 900" [ref=e98]:
+        - tab "Hide" [selected] [ref=e99] [cursor=pointer]
+        - tab "100–900" [ref=e100] [cursor=pointer]
+      - generic "Force a minimum WCAG contrast level on every color pair" [ref=e101]: WCAG
+      - tablist "Minimum WCAG contrast level enforcement" [ref=e102]:
+        - tab "A" [selected] [ref=e103] [cursor=pointer]
+        - tab "AA" [ref=e104] [cursor=pointer]
+        - tab "AAA" [ref=e105] [cursor=pointer]
+      - button "Try another" [ref=e106] [cursor=pointer]:
+        - img [ref=e107]
+        - text: Try another
+    - generic [ref=e112]:
+      - generic [ref=e113]:
+        - heading "Palette" [level=2] [ref=e115]
+        - generic [ref=e116]: Curated premium materials · ranked by perceptual fit (ΔE) with primary · click body to copy
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - generic [ref=e119] [cursor=pointer]:
+            - button "Edit primary" [ref=e121]:
+              - img [ref=e122]
+            - generic [ref=e124]: 01 · Primary
+            - generic [ref=e125]: "#5B6CFF"
+            - 'generic "Nearest match in OKLCH ΔE: 0.050 from CSS named colors" [ref=e126]': Medium Slate Blue≈
+            - text: click to copy
+          - generic [ref=e127]:
+            - generic [ref=e128]: "#5B6CFF"
+            - generic [ref=e129]: L 0.60 · C 0.22 · H 273°
+        - generic [ref=e130]:
+          - generic [ref=e131] [cursor=pointer]:
+            - generic [ref=e132]:
+              - button "Edit accent1" [ref=e133]:
+                - img [ref=e134]
+              - button "Lock accent1" [ref=e136]:
+                - img [ref=e137]
+            - generic [ref=e140]: 02 · Primary accent
+            - generic [ref=e141]: "#8B8680"
+            - generic [ref=e142]: Pewter
+            - text: click to copy
+          - generic [ref=e143]:
+            - generic [ref=e144]: "#8B8680"
+            - generic [ref=e145]: Pewter · ΔE 0.23
+        - generic [ref=e146]:
+          - generic [ref=e147] [cursor=pointer]:
+            - generic [ref=e148]:
+              - button "Edit accent2" [ref=e149]:
+                - img [ref=e150]
+              - button "Lock accent2" [ref=e152]:
+                - img [ref=e153]
+            - generic [ref=e156]: 03 · Secondary accent
+            - generic [ref=e157]: "#3D6B5E"
+            - generic [ref=e158]: Verdigris
+            - text: click to copy
+          - generic [ref=e159]:
+            - generic [ref=e160]: "#3D6B5E"
+            - generic [ref=e161]: Verdigris · ΔE 0.26
+        - generic [ref=e162]:
+          - generic [ref=e163] [cursor=pointer]:
+            - generic [ref=e164]:
+              - button "Edit accent3" [ref=e165]:
+                - img [ref=e166]
+              - button "Lock accent3" [ref=e168]:
+                - img [ref=e169]
+            - generic [ref=e172]: 04 · Tertiary accent
+            - generic [ref=e173]: "#C97D6E"
+            - generic [ref=e174]: Coral Tea
+            - text: click to copy
+          - generic [ref=e175]:
+            - generic [ref=e176]: "#C97D6E"
+            - generic [ref=e177]: Coral Tea · ΔE 0.29
+      - generic [ref=e178]:
+        - heading "Status colors" [level=2] [ref=e180]
+        - generic [ref=e181]: Adaptive shift toward primary hue
+      - generic [ref=e182]:
+        - generic [ref=e183]:
+          - generic [ref=e184] [cursor=pointer]:
+            - generic [ref=e185]:
+              - button "Edit success" [ref=e186]:
+                - img [ref=e187]
+              - button "Lock success" [ref=e189]:
+                - img [ref=e190]
+            - generic [ref=e193]: Success
+            - 'generic "Nearest match in OKLCH ΔE: 0.040" [ref=e194]': Medium Sea Green≈
+          - generic [ref=e195]:
+            - generic [ref=e196]: "#30A66D"
+            - generic [ref=e197]: 158°
+        - generic [ref=e198]:
+          - generic [ref=e199] [cursor=pointer]:
+            - generic [ref=e200]:
+              - button "Edit warning" [ref=e201]:
+                - img [ref=e202]
+              - button "Lock warning" [ref=e204]:
+                - img [ref=e205]
+            - generic [ref=e208]: Warning
+            - 'generic "Nearest match in OKLCH ΔE: 0.050" [ref=e209]': Tomato≈
+          - generic [ref=e210]:
+            - generic [ref=e211]: "#EE712B"
+            - generic [ref=e212]: 46°
+        - generic [ref=e213]:
+          - generic [ref=e214] [cursor=pointer]:
+            - generic [ref=e215]:
+              - button "Edit danger" [ref=e216]:
+                - img [ref=e217]
+              - button "Lock danger" [ref=e219]:
+                - img [ref=e220]
+            - generic [ref=e223]: Danger
+            - 'generic "Nearest match in OKLCH ΔE: 0.012" [ref=e224]': Crimson
+          - generic [ref=e225]:
+            - generic [ref=e226]: "#D92641"
+            - generic [ref=e227]: 20°
+        - generic [ref=e228]:
+          - generic [ref=e229] [cursor=pointer]:
+            - generic [ref=e230]:
+              - button "Edit info" [ref=e231]:
+                - img [ref=e232]
+              - button "Lock info" [ref=e234]:
+                - img [ref=e235]
+            - generic [ref=e238]: Info
+            - 'generic "Nearest match in OKLCH ΔE: 0.050" [ref=e239]': Royal Blue≈
+          - generic [ref=e240]:
+            - generic [ref=e241]: "#2D79D2"
+            - generic [ref=e242]: 255°
+    - generic [ref=e243]:
+      - generic [ref=e244]:
+        - heading "Paper" [level=2] [ref=e245]
+        - button "Tune" [ref=e246] [cursor=pointer]:
+          - img [ref=e247]
+          - text: Tune
+      - generic [ref=e250]: Neutrals tinted toward the primary hue — independent of Grid / Line view
+    - generic [ref=e251]:
+      - generic [ref=e252]:
+        - generic [ref=e253] [cursor=pointer]:
+          - generic [ref=e254]:
+            - generic [ref=e255]: Bg
+            - generic [ref=e256]: page background
+          - generic [ref=e257]: "#F8FAFF"
+        - generic [ref=e258]:
+          - generic [ref=e259]: "#F8FAFF"
+          - generic [ref=e260]: L 0.99
+      - generic [ref=e261]:
+        - generic [ref=e262] [cursor=pointer]:
+          - generic [ref=e263]:
+            - generic [ref=e264]: Surface
+            - generic [ref=e265]: cards / panels
+          - generic [ref=e266]: "#FFFFFF"
+        - generic [ref=e267]:
+          - generic [ref=e268]: "#FFFFFF"
+          - generic [ref=e269]: L 1.00
+      - generic [ref=e270]:
+        - generic [ref=e271] [cursor=pointer]:
+          - generic [ref=e272]:
+            - generic [ref=e273]: Layout
+            - generic [ref=e274]: sidebar · sections
+          - generic [ref=e275]: "#F0F3FE"
+        - generic [ref=e276]:
+          - generic [ref=e277]: "#F0F3FE"
+          - generic [ref=e278]: L 0.97
+      - generic [ref=e279]:
+        - generic [ref=e280] [cursor=pointer]:
+          - generic [ref=e281]:
+            - generic [ref=e282]: Border
+            - generic [ref=e283]: dividers
+          - generic [ref=e284]: "#DCE1F1"
+        - generic [ref=e285]:
+          - generic [ref=e286]: "#DCE1F1"
+          - generic [ref=e287]: L 0.91
+      - generic [ref=e288]:
+        - generic [ref=e289] [cursor=pointer]:
+          - generic [ref=e290]:
+            - generic [ref=e291]: Muted
+            - generic [ref=e292]: secondary text
+          - generic [ref=e293]: "#7C8295"
+        - generic [ref=e294]:
+          - generic [ref=e295]: "#7C8295"
+          - generic [ref=e296]: L 0.61
+      - generic [ref=e297]:
+        - generic [ref=e298] [cursor=pointer]:
+          - generic [ref=e299]:
+            - generic [ref=e300]: Body
+            - generic [ref=e301]: body text
+          - generic [ref=e302]: "#1B2034"
+        - generic [ref=e303]:
+          - generic [ref=e304]: "#1B2034"
+          - generic [ref=e305]: L 0.25
+      - generic [ref=e306]:
+        - generic [ref=e307] [cursor=pointer]:
+          - generic [ref=e308]:
+            - generic [ref=e309]: Heading
+            - generic [ref=e310]: headings · brand
+          - generic [ref=e311]: "#03051A"
+        - generic [ref=e312]:
+          - generic [ref=e313]: "#03051A"
+          - generic [ref=e314]: L 0.13
+    - generic [ref=e315]:
+      - heading "Compatibility breakdown" [level=3] [ref=e316]
+      - paragraph [ref=e317]: Each row is a pair of swatches. The five components (hue / chroma / lightness / accessibility / modernity) are scored 0–100; the overall % is their weighted sum using the Weights sliders above.
+      - generic [ref=e318]:
+        - generic [ref=e319]:
+          - generic [ref=e320]:
+            - 'generic "Primary · #5B6CFF" [ref=e321]'
+            - 'generic "A1 · #8B8680" [ref=e322]'
+          - generic [ref=e323]:
+            - generic [ref=e324]: Primary×A1
+            - generic [ref=e325]: "#5B6CFF · #8B8680"
+          - generic [ref=e326]:
+            - generic "WCAG contrast ratio" [ref=e327]: 1.16:1
+            - generic "WCAG 2.1 level — A (1.16:1)" [ref=e328]: A
+          - generic [ref=e329]:
+            - generic [ref=e331]:
+              - generic [ref=e332]: Hue
+              - generic [ref=e333]: "73"
+            - generic [ref=e337]:
+              - generic [ref=e338]: Chroma
+              - generic [ref=e339]: "9"
+            - generic [ref=e343]:
+              - generic [ref=e344]: Lightness
+              - generic [ref=e345]: "61"
+            - generic [ref=e349]:
+              - generic [ref=e350]: Access.
+              - generic [ref=e351]: "29"
+            - generic [ref=e355]:
+              - generic [ref=e356]: Modern.
+              - generic [ref=e357]: "84"
+          - generic [ref=e360]: 50%
+        - generic [ref=e361]:
+          - generic [ref=e362]:
+            - 'generic "Primary · #5B6CFF" [ref=e363]'
+            - 'generic "A2 · #3D6B5E" [ref=e364]'
+          - generic [ref=e365]:
+            - generic [ref=e366]: Primary×A2
+            - generic [ref=e367]: "#5B6CFF · #3D6B5E"
+          - generic [ref=e368]:
+            - generic "WCAG contrast ratio" [ref=e369]: 1.45:1
+            - generic "WCAG 2.1 level — A (1.45:1)" [ref=e370]: A
+          - generic [ref=e371]:
+            - generic [ref=e373]:
+              - generic [ref=e374]: Hue
+              - generic [ref=e375]: "22"
+            - generic [ref=e379]:
+              - generic [ref=e380]: Chroma
+              - generic [ref=e381]: "46"
+            - generic [ref=e385]:
+              - generic [ref=e386]: Lightness
+              - generic [ref=e387]: "91"
+            - generic [ref=e391]:
+              - generic [ref=e392]: Access.
+              - generic [ref=e393]: "33"
+            - generic [ref=e397]:
+              - generic [ref=e398]: Modern.
+              - generic [ref=e399]: "79"
+          - generic [ref=e402]: 48%
+        - generic [ref=e403]:
+          - generic [ref=e404]:
+            - 'generic "Primary · #5B6CFF" [ref=e405]'
+            - 'generic "A3 · #C97D6E" [ref=e406]'
+          - generic [ref=e407]:
+            - generic [ref=e408]: Primary×A3
+            - generic [ref=e409]: "#5B6CFF · #C97D6E"
+          - generic [ref=e410]:
+            - generic "WCAG contrast ratio" [ref=e411]: 1.32:1
+            - generic "WCAG 2.1 level — A (1.32:1)" [ref=e412]: A
+          - generic [ref=e413]:
+            - generic [ref=e415]:
+              - generic [ref=e416]: Hue
+              - generic [ref=e417]: "100"
+            - generic [ref=e421]:
+              - generic [ref=e422]: Chroma
+              - generic [ref=e423]: "82"
+            - generic [ref=e427]:
+              - generic [ref=e428]: Lightness
+              - generic [ref=e429]: "77"
+            - generic [ref=e433]:
+              - generic [ref=e434]: Access.
+              - generic [ref=e435]: "33"
+            - generic [ref=e439]:
+              - generic [ref=e440]: Modern.
+              - generic [ref=e441]: "97"
+          - generic [ref=e444]: 73%
+        - generic [ref=e445]:
+          - generic [ref=e446]:
+            - 'generic "A1 · #8B8680" [ref=e447]'
+            - 'generic "A2 · #3D6B5E" [ref=e448]'
+          - generic [ref=e449]:
+            - generic [ref=e450]: A1×A2
+            - generic [ref=e451]: "#8B8680 · #3D6B5E"
+          - generic [ref=e452]:
+            - generic "WCAG contrast ratio" [ref=e453]: 1.68:1
+            - generic "WCAG 2.1 level — A (1.68:1)" [ref=e454]: A
+          - generic [ref=e455]:
+            - generic [ref=e457]:
+              - generic [ref=e458]: Hue
+              - generic [ref=e459]: "29"
+            - generic [ref=e463]:
+              - generic [ref=e464]: Chroma
+              - generic [ref=e465]: "35"
+            - generic [ref=e469]:
+              - generic [ref=e470]: Lightness
+              - generic [ref=e471]: "96"
+            - generic [ref=e475]:
+              - generic [ref=e476]: Access.
+              - generic [ref=e477]: "38"
+            - generic [ref=e481]:
+              - generic [ref=e482]: Modern.
+              - generic [ref=e483]: "70"
+          - generic [ref=e486]: 49%
+        - generic [ref=e487]:
+          - generic [ref=e488]:
+            - 'generic "A1 · #8B8680" [ref=e489]'
+            - 'generic "A3 · #C97D6E" [ref=e490]'
+          - generic [ref=e491]:
+            - generic [ref=e492]: A1×A3
+            - generic [ref=e493]: "#8B8680 · #C97D6E"
+          - generic [ref=e494]:
+            - generic "WCAG contrast ratio" [ref=e495]: 1.14:1
+            - generic "WCAG 2.1 level — A (1.14:1)" [ref=e496]: A
+          - generic [ref=e497]:
+            - generic [ref=e499]:
+              - generic [ref=e500]: Hue
+              - generic [ref=e501]: "67"
+            - generic [ref=e505]:
+              - generic [ref=e506]: Chroma
+              - generic [ref=e507]: "20"
+            - generic [ref=e511]:
+              - generic [ref=e512]: Lightness
+              - generic [ref=e513]: "70"
+            - generic [ref=e517]:
+              - generic [ref=e518]: Access.
+              - generic [ref=e519]: "34"
+            - generic [ref=e523]:
+              - generic [ref=e524]: Modern.
+              - generic [ref=e525]: "88"
+          - generic [ref=e528]: 54%
+        - generic [ref=e529]:
+          - generic [ref=e530]:
+            - 'generic "A2 · #3D6B5E" [ref=e531]'
+            - 'generic "A3 · #C97D6E" [ref=e532]'
+          - generic [ref=e533]:
+            - generic [ref=e534]: A2×A3
+            - generic [ref=e535]: "#3D6B5E · #C97D6E"
+          - generic [ref=e536]:
+            - generic "WCAG contrast ratio" [ref=e537]: 1.92:1
+            - generic "WCAG 2.1 level — A (1.92:1)" [ref=e538]: A
+          - generic [ref=e539]:
+            - generic [ref=e541]:
+              - generic [ref=e542]: Hue
+              - generic [ref=e543]: "80"
+            - generic [ref=e547]:
+              - generic [ref=e548]: Chroma
+              - generic [ref=e549]: "98"
+            - generic [ref=e553]:
+              - generic [ref=e554]: Lightness
+              - generic [ref=e555]: "100"
+            - generic [ref=e559]:
+              - generic [ref=e560]: Access.
+              - generic [ref=e561]: "43"
+            - generic [ref=e565]:
+              - generic [ref=e566]: Modern.
+              - generic [ref=e567]: "83"
+          - generic [ref=e570]: 75%
+        - generic [ref=e573]: Paper readability · contrast on page surfaces
+        - generic [ref=e575]:
+          - generic [ref=e576]:
+            - 'generic "Primary · #5B6CFF" [ref=e577]'
+            - 'generic "Bg · #F8FAFF" [ref=e578]'
+          - generic [ref=e579]:
+            - generic [ref=e580]: Primary×Bg
+            - generic [ref=e581]: "#5B6CFF · #F8FAFF"
+          - generic [ref=e582]:
+            - generic "WCAG contrast ratio" [ref=e583]: 3.99:1
+            - generic "WCAG 2.1 level — A (3.99:1)" [ref=e584]: A
+          - generic [ref=e585]:
+            - generic [ref=e587]:
+              - generic [ref=e588]: Hue
+              - generic [ref=e589]: "55"
+            - generic [ref=e593]:
+              - generic [ref=e594]: Chroma
+              - generic [ref=e595]: "6"
+            - generic [ref=e599]:
+              - generic [ref=e600]: Lightness
+              - generic [ref=e601]: "45"
+            - generic [ref=e605]:
+              - generic [ref=e606]: Access.
+              - generic [ref=e607]: "62"
+            - generic [ref=e611]:
+              - generic [ref=e612]: Modern.
+              - generic [ref=e613]: "88"
+          - generic [ref=e616]: 53%
+        - generic [ref=e617]:
+          - generic [ref=e618]:
+            - 'generic "A1 · #8B8680" [ref=e619]'
+            - 'generic "Bg · #F8FAFF" [ref=e620]'
+          - generic [ref=e621]:
+            - generic [ref=e622]: A1×Bg
+            - generic [ref=e623]: "#8B8680 · #F8FAFF"
+          - generic [ref=e624]:
+            - generic "WCAG contrast ratio" [ref=e625]: 3.46:1
+            - generic "WCAG 2.1 level — A (3.46:1)" [ref=e626]: A
+          - generic [ref=e627]:
+            - generic [ref=e629]:
+              - generic [ref=e630]: Hue
+              - generic [ref=e631]: "50"
+            - generic [ref=e635]:
+              - generic [ref=e636]: Chroma
+              - generic [ref=e637]: "82"
+            - generic [ref=e641]:
+              - generic [ref=e642]: Lightness
+              - generic [ref=e643]: "52"
+            - generic [ref=e647]:
+              - generic [ref=e648]: Access.
+              - generic [ref=e649]: "59"
+            - generic [ref=e653]:
+              - generic [ref=e654]: Modern.
+              - generic [ref=e655]: "79"
+          - generic [ref=e658]: 62%
+        - generic [ref=e659]:
+          - generic [ref=e660]:
+            - 'generic "A2 · #3D6B5E" [ref=e661]'
+            - 'generic "Bg · #F8FAFF" [ref=e662]'
+          - generic [ref=e663]:
+            - generic [ref=e664]: A2×Bg
+            - generic [ref=e665]: "#3D6B5E · #F8FAFF"
+          - generic [ref=e666]:
+            - generic "WCAG contrast ratio" [ref=e667]: 5.81:1
+            - generic "WCAG 2.1 level — AA (5.81:1)" [ref=e668]: AA
+          - generic [ref=e669]:
+            - generic [ref=e671]:
+              - generic [ref=e672]: Hue
+              - generic [ref=e673]: "11"
+            - generic [ref=e677]:
+              - generic [ref=e678]: Chroma
+              - generic [ref=e679]: "23"
+            - generic [ref=e683]:
+              - generic [ref=e684]: Lightness
+              - generic [ref=e685]: "14"
+            - generic [ref=e689]:
+              - generic [ref=e690]: Access.
+              - generic [ref=e691]: "86"
+            - generic [ref=e695]:
+              - generic [ref=e696]: Modern.
+              - generic [ref=e697]: "74"
+          - generic [ref=e700]: 45%
+        - generic [ref=e701]:
+          - generic [ref=e702]:
+            - 'generic "A3 · #C97D6E" [ref=e703]'
+            - 'generic "Bg · #F8FAFF" [ref=e704]'
+          - generic [ref=e705]:
+            - generic [ref=e706]: A3×Bg
+            - generic [ref=e707]: "#C97D6E · #F8FAFF"
+          - generic [ref=e708]:
+            - generic "WCAG contrast ratio" [ref=e709]: 3.03:1
+            - generic "WCAG 2.1 level — A (3.03:1)" [ref=e710]: A
+          - generic [ref=e711]:
+            - generic [ref=e713]:
+              - generic [ref=e714]: Hue
+              - generic [ref=e715]: "96"
+            - generic [ref=e719]:
+              - generic [ref=e720]: Chroma
+              - generic [ref=e721]: "13"
+            - generic [ref=e725]:
+              - generic [ref=e726]: Lightness
+              - generic [ref=e727]: "69"
+            - generic [ref=e731]:
+              - generic [ref=e732]: Access.
+              - generic [ref=e733]: "57"
+            - generic [ref=e737]:
+              - generic [ref=e738]: Modern.
+              - generic [ref=e739]: "91"
+          - generic [ref=e742]: 67%
+        - generic [ref=e743]:
+          - generic [ref=e744]:
+            - 'generic "Heading · #03051A" [ref=e745]'
+            - 'generic "Bg · #F8FAFF" [ref=e746]'
+          - generic [ref=e747]:
+            - generic [ref=e748]: Heading×Bg
+            - generic [ref=e749]: "#03051A · #F8FAFF"
+          - generic [ref=e750]:
+            - generic "WCAG contrast ratio" [ref=e751]: 19.33:1
+            - generic "WCAG 2.1 level — AAA (19.33:1)" [ref=e752]: AAA
+          - generic [ref=e753]:
+            - generic [ref=e755]:
+              - generic [ref=e756]: Hue
+              - generic [ref=e757]: "55"
+            - generic [ref=e761]:
+              - generic [ref=e762]: Chroma
+              - generic [ref=e763]: "26"
+            - generic [ref=e767]:
+              - generic [ref=e768]: Lightness
+              - generic [ref=e769]: "0"
+            - generic [ref=e773]:
+              - generic [ref=e774]: Access.
+              - generic [ref=e775]: "100"
+            - generic [ref=e779]:
+              - generic [ref=e780]: Modern.
+              - generic [ref=e781]: "84"
+          - generic [ref=e784]: 60%
+        - generic [ref=e785]:
+          - generic [ref=e786]:
+            - 'generic "Body · #1B2034" [ref=e787]'
+            - 'generic "Bg · #F8FAFF" [ref=e788]'
+          - generic [ref=e789]:
+            - generic [ref=e790]: Body×Bg
+            - generic [ref=e791]: "#1B2034 · #F8FAFF"
+          - generic [ref=e792]:
+            - generic "WCAG contrast ratio" [ref=e793]: 15.44:1
+            - generic "WCAG 2.1 level — AAA (15.44:1)" [ref=e794]: AAA
+          - generic [ref=e795]:
+            - generic [ref=e797]:
+              - generic [ref=e798]: Hue
+              - generic [ref=e799]: "55"
+            - generic [ref=e803]:
+              - generic [ref=e804]: Chroma
+              - generic [ref=e805]: "33"
+            - generic [ref=e809]:
+              - generic [ref=e810]: Lightness
+              - generic [ref=e811]: "0"
+            - generic [ref=e815]:
+              - generic [ref=e816]: Access.
+              - generic [ref=e817]: "100"
+            - generic [ref=e821]:
+              - generic [ref=e822]: Modern.
+              - generic [ref=e823]: "82"
+          - generic [ref=e826]: 61%
+        - generic [ref=e827]:
+          - generic [ref=e828]:
+            - 'generic "Muted · #7C8295" [ref=e829]'
+            - 'generic "Bg · #F8FAFF" [ref=e830]'
+          - generic [ref=e831]:
+            - generic [ref=e832]: Muted×Bg
+            - generic [ref=e833]: "#7C8295 · #F8FAFF"
+          - generic [ref=e834]:
+            - generic "WCAG contrast ratio" [ref=e835]: 3.67:1
+            - generic "WCAG 2.1 level — A (3.67:1)" [ref=e836]: A
+          - generic [ref=e837]:
+            - generic [ref=e839]:
+              - generic [ref=e840]: Hue
+              - generic [ref=e841]: "55"
+            - generic [ref=e845]:
+              - generic [ref=e846]: Chroma
+              - generic [ref=e847]: "43"
+            - generic [ref=e851]:
+              - generic [ref=e852]: Lightness
+              - generic [ref=e853]: "47"
+            - generic [ref=e857]:
+              - generic [ref=e858]: Access.
+              - generic [ref=e859]: "60"
+            - generic [ref=e863]:
+              - generic [ref=e864]: Modern.
+              - generic [ref=e865]: "82"
+          - generic [ref=e868]: 58%
+        - generic [ref=e869]:
+          - generic [ref=e870]:
+            - 'generic "Body · #1B2034" [ref=e871]'
+            - 'generic "Surface · #FFFFFF" [ref=e872]'
+          - generic [ref=e873]:
+            - generic [ref=e874]: Body×Surface
+            - generic [ref=e875]: "#1B2034 · #FFFFFF"
+          - generic [ref=e876]:
+            - generic "WCAG contrast ratio" [ref=e877]: 16.12:1
+            - generic "WCAG 2.1 level — AAA (16.12:1)" [ref=e878]: AAA
+          - generic [ref=e879]:
+            - generic [ref=e881]:
+              - generic [ref=e882]: Hue
+              - generic [ref=e883]: "97"
+            - generic [ref=e887]:
+              - generic [ref=e888]: Chroma
+              - generic [ref=e889]: "0"
+            - generic [ref=e892]:
+              - generic [ref=e893]: Lightness
+              - generic [ref=e894]: "0"
+            - generic [ref=e898]:
+              - generic [ref=e899]: Access.
+              - generic [ref=e900]: "100"
+            - generic [ref=e904]:
+              - generic [ref=e905]: Modern.
+              - generic [ref=e906]: "82"
+          - generic [ref=e909]: 67%
+    - contentinfo [ref=e910]: OKLCH · WCAG 2.1 · drop a hex above to remix
+  - generic: Copied
