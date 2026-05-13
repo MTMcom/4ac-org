@@ -71,6 +71,17 @@
   .hex-field{flex:1;min-width:160px;display:flex;flex-direction:column;gap:4px}
   .hex-field label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
   .hex-field input{font-family:var(--mono);font-size:18px;font-weight:500;color:var(--fg);border:0;outline:0;background:transparent;width:100%;padding:0;letter-spacing:.04em;text-transform:uppercase}
+  .input-divider{
+    display:inline-flex;align-items:center;justify-content:center;
+    flex:none;padding:0;
+  }
+  .input-divider span{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:32px;height:24px;padding:0 8px;border-radius:999px;
+    background:var(--bg);border:1px solid var(--line);
+    font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+    color:var(--muted);font-weight:700;
+  }
   .presets{display:flex;gap:6px;flex-wrap:wrap}
   .preset{width:28px;height:28px;border-radius:8px;border:1px solid rgba(0,0,0,.08);cursor:pointer;transition:transform .12s}
   .preset:hover{transform:translateY(-2px)}
@@ -729,6 +740,20 @@
   .method-panel input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--fg);cursor:pointer}
   .method-panel input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--fg);cursor:pointer;border:0}
   .method-panel input[type=range]:focus-visible{outline:2px solid var(--fg);outline-offset:6px;border-radius:4px}
+  /* Reset button pinned to the top-right of each method panel / weights bar.
+     Parent containers get position:relative below. */
+  .panel-reset{
+    position:absolute;top:8px;right:8px;z-index:2;
+    background:transparent;border:1px solid var(--line);border-radius:8px;
+    padding:5px 10px;cursor:pointer;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+    color:var(--muted);text-transform:uppercase;font-weight:600;
+    transition:border-color .15s, color .15s, background .15s;
+  }
+  .panel-reset:hover{border-color:var(--muted);color:var(--fg);background:var(--code-bg)}
+  .panel-reset:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+  .method-panel,
+  .weights{position:relative}
 
   body[data-method="hsl"] [data-m1-only],
   body[data-method="material"] [data-m1-only],
@@ -814,21 +839,57 @@
     .pair-row > .pair-score{
       flex:none;font-size:20px;line-height:1;text-align:right;
     }
-    /* Hide tuning + analysis features.
-       method-panel needs the .active override because the desktop rule
-       .method-panel.active{display:flex} has higher specificity. */
+    /* Hide analysis-only features that don't survive a narrow viewport.
+       Keep per-method tuning visible — designers need it on phones too. */
     .components{display:none}
-    .weights{display:none}
     .hue-map-wrap{display:none}
-    .method-panel,
-    .method-panel.active{display:none}
     .grade-strip{display:none}
-    /* Input bar collapses to vertical stack */
-    .input-bar{flex-direction:column;align-items:stretch;gap:12px;padding:12px}
-    .input-bar .swatch-input{width:56px;height:56px;align-self:flex-start}
-    .input-bar .hex-field{min-width:0;width:100%}
-    .input-bar .tag-zone{padding:0}
-    .input-bar .presets{justify-content:flex-start}
+    /* Per-method tuning panels — stack controls vertically. Generous tap
+       targets: bigger slider thumbs, thicker tracks, taller selects, more
+       breathing room between controls. */
+    .method-panel.active{flex-direction:column;align-items:stretch;gap:20px;padding:18px 16px}
+    .method-panel .control{min-width:0;width:100%;flex:none;gap:8px}
+    .weights{flex-direction:column;align-items:stretch;gap:20px;padding:18px 16px}
+    .weight{min-width:0;width:100%;flex:none;gap:8px}
+    .method-panel .control-head,
+    .weight-head{font-size:13px}
+    .method-panel select{font-size:15px;padding:12px 14px;min-height:44px;border-radius:10px}
+    /* Slider: thicker track + larger thumb for fat-finger use */
+    .method-panel input[type=range],
+    .weight input[type=range]{height:6px;border-radius:3px}
+    .method-panel input[type=range]::-webkit-slider-thumb,
+    .weight input[type=range]::-webkit-slider-thumb{width:26px;height:26px}
+    .method-panel input[type=range]::-moz-range-thumb,
+    .weight input[type=range]::-moz-range-thumb{width:26px;height:26px}
+    /* Reset button — proper tap target */
+    .panel-reset{padding:8px 14px;font-size:10.5px;top:10px;right:10px}
+    /* Paper "Tune" panel — same touch treatment */
+    .paper-controls{flex-direction:column;align-items:stretch;gap:20px;padding:18px 16px}
+    .paper-control{min-width:0;width:100%;flex:none;gap:8px}
+    .paper-control .pc-head{font-size:13px}
+    .paper-control input[type=range]{height:6px;border-radius:3px}
+    .paper-control input[type=range]::-webkit-slider-thumb{width:26px;height:26px}
+    .paper-control input[type=range]::-moz-range-thumb{width:26px;height:26px}
+    /* OR divider gets a touch more presence on phones */
+    .input-divider span{min-width:36px;height:28px;font-size:11px}
+    /* Input bar: cram [swatch][hex][OR][Select Theme] onto one row,
+       wrap presets below. Drop the "Input color" label, shrink the tag
+       trigger, and override the hex-field's inline max-width:180px. */
+    .input-bar{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px;padding:12px}
+    .input-bar .swatch-input{width:48px;height:48px;flex:none;border-radius:12px}
+    .input-bar .hex-field{min-width:0;flex:0 0 auto;max-width:74px!important;width:74px}
+    .input-bar .hex-field label{display:none}
+    .input-bar .hex-field input{font-size:14px;letter-spacing:.02em}
+    .input-bar .input-divider{flex:none;padding:0;font-size:9px;letter-spacing:.14em}
+    .input-bar .input-divider span{padding:0 2px}
+    .input-bar .tag-zone{flex:0 1 auto;padding:0;min-width:0;display:flex}
+    .input-bar .tag-popover-wrap{min-width:0}
+    .input-bar .tag-trigger{padding:10px 12px;font-size:12px;gap:6px;letter-spacing:.02em;min-height:44px;border-radius:10px}
+    .input-bar .tag-trigger .tag-icon,
+    .input-bar .tag-trigger .tag-caret{width:12px;height:12px}
+    /* Preset color chips — fat-finger friendly */
+    .input-bar .presets{flex-basis:100%;justify-content:flex-start;gap:8px;margin-top:6px}
+    .input-bar .preset{width:40px;height:40px;border-radius:10px}
     /* Method tabs: one-per-row, drop descriptions */
     .method-tab{padding:14px 14px 14px 40px}
     .method-tab .tab-desc{display:none}
@@ -852,11 +913,37 @@
     /* Toolbar buttons get a bit smaller */
     .toolbar{justify-content:flex-start}
     .toolbar-btn{padding:7px 10px;font-size:11px}
+    /* Mobile-only warning banner */
+    .mobile-warning{
+      display:flex;align-items:center;gap:10px;
+      margin:0 0 18px;padding:10px 12px 10px 14px;
+      background:linear-gradient(105deg, rgba(91,108,255,.18), rgba(255,110,145,.18));
+      border:1px solid var(--line);border-radius:10px;
+      font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+      color:var(--fg);line-height:1.4;
+    }
+    .mobile-warning span{flex:1}
+    .mobile-warning b{font-weight:600}
+    .mobile-warning .mw-close{
+      background:transparent;border:0;color:var(--muted);
+      font-size:18px;line-height:1;cursor:pointer;padding:2px 6px;
+      border-radius:6px;flex:none;
+    }
+    .mobile-warning .mw-close:hover{color:var(--fg);background:var(--code-bg)}
   }
+  /* Hidden by default; the mobile media query above turns it into a flex
+     row. Dismiss state survives reloads via localStorage. */
+  .mobile-warning{display:none}
+  .mobile-warning.dismissed{display:none!important}
 </style>
 </head>
 <body>
   <div class="container">
+
+    <div class="mobile-warning" role="note">
+      <span>For the <b>best experience</b>, open this on desktop — tuning controls, the color wheel, and the full compatibility breakdown are hidden or simplified at this width.</span>
+      <button class="mw-close" id="mwCloseBtn" type="button" aria-label="Dismiss">×</button>
+    </div>
 
     <header>
       <div class="header-row">
@@ -931,11 +1018,13 @@
         <input type="text" id="hexInput" value="#5B6CFF" maxlength="7" autocomplete="off" spellcheck="false">
       </div>
 
+      <div class="input-divider" aria-hidden="true"><span>OR</span></div>
+
       <div class="tag-zone" id="tagZone">
         <div class="tag-popover-wrap">
-          <button class="tag-trigger" id="tagTriggerBtn" aria-haspopup="true" aria-expanded="false" title="Tag your project to refine the suggested colors">
+          <button class="tag-trigger" id="tagTriggerBtn" aria-haspopup="true" aria-expanded="false" title="Select Theme to refine the suggested colors">
             <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-            <span id="tagTriggerLabel">Tag your project</span>
+            <span id="tagTriggerLabel">Select Theme</span>
             <span class="badge" id="tagBadge" style="display:none">0</span>
             <svg class="tag-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
@@ -980,6 +1069,7 @@
       <div class="weight"><div class="weight-head"><span class="name">Modernity</span><span class="val" id="wm-val">0.15</span></div><input type="range" id="wm" min="0" max="1" step="0.05" value="0.15"></div>
       <div class="weight" title="Minimum hue separation (degrees) between primary and each accent. At 0, accents can share primary's hue. At 180, only the exact complementary hue qualifies — A2/A3 are likely empty."><div class="weight-head"><span class="name">Primary hue gap</span><span class="val" id="wv-val">60°</span></div><input type="range" id="wv" min="0" max="180" step="5" value="60"></div>
       <div class="weight" title="Minimum hue separation (degrees) between any two accents. Higher = accents must be further apart on the wheel; some slots may go empty."><div class="weight-head"><span class="name">Accent hue gap</span><span class="val" id="wav-val">30°</span></div><input type="range" id="wav" min="0" max="180" step="5" value="30"></div>
+      <button class="panel-reset" data-reset="oklch" type="button" title="Restore the default weights">Reset</button>
     </div>
     <!-- METHOD-SPECIFIC PANELS (HSL / Material / Hybrid) -->
     <div class="method-panel" id="hslPanel" data-method-panel="hsl">
@@ -996,6 +1086,7 @@
       </div>
       <div class="control"><div class="control-head"><span class="name">Saturation drop</span><span class="val" id="hslSatVal">30%</span></div><input type="range" id="hslSat" min="0" max="60" step="5" value="30"></div>
       <div class="control"><div class="control-head"><span class="name">Lightness bias</span><span class="val" id="hslLightVal">+0%</span></div><input type="range" id="hslLight" min="-30" max="30" step="5" value="0"></div>
+      <button class="panel-reset" data-reset="hsl" type="button" title="Restore HSL defaults">Reset</button>
     </div>
 
     <div class="method-panel" id="materialPanel" data-method-panel="material">
@@ -1012,6 +1103,7 @@
       </div>
       <div class="control"><div class="control-head"><span class="name">Sweet-spot center</span><span class="val" id="matSweetVal">0.22</span></div><input type="range" id="matSweet" min="0.05" max="0.40" step="0.01" value="0.22"></div>
       <div class="control"><div class="control-head"><span class="name">Min distance from primary</span><span class="val" id="matMinVal">0.05</span></div><input type="range" id="matMin" min="0" max="0.20" step="0.01" value="0.05"></div>
+      <button class="panel-reset" data-reset="material" type="button" title="Restore Material defaults">Reset</button>
     </div>
 
     <div class="method-panel" id="hybridPanel" data-method-panel="hybrid">
@@ -1035,6 +1127,7 @@
           <option value="high">High (any awkward output)</option>
         </select>
       </div>
+      <button class="panel-reset" data-reset="hybrid" type="button" title="Restore Hybrid defaults">Reset</button>
     </div>
     </div><!-- /top-row-left -->
     <div class="hue-map-wrap" title="Each palette color plotted by hue (angle) and chroma (radius from center)">
@@ -4170,7 +4263,7 @@ document.getElementById('hexInput').addEventListener('input', (e) => {
    ============================================================ */
 
 const TRIGGER_LABELS = {
-  none:  'Tag your project',
+  none:  'Select Theme',
   some:  (n) => `${n} tag${n>1?'s':''} active`
 };
 
@@ -4196,7 +4289,7 @@ function syncTagUI(){
   const triggerBtn = document.getElementById('tagTriggerBtn');
   const badge = document.getElementById('tagBadge');
   if (SELECTED_TAGS.size === 0){
-    triggerLabel.textContent = 'Tag your project';
+    triggerLabel.textContent = 'Select Theme';
     triggerBtn.classList.remove('has-tags');
     if (badge) badge.style.display = 'none';
   } else {
@@ -4467,6 +4560,73 @@ function regenAll(){
   showToast('New combination');
 }
 document.getElementById('regenAllBtn').addEventListener('click', regenAll);
+
+// Reset buttons on each method-tuning panel — restore the panel's default
+// option values, sync the visible inputs/labels, then trigger a rerender.
+const PANEL_DEFAULTS = {
+  hsl:      { scheme:'analogous', satDrop:30, lightBias:0 },
+  material: { filter:'all', sweet:0.22, minDist:0.05 },
+  hybrid:   { scheme:'analogous', satDrop:30, snapLevel:'medium' },
+  oklch:    { wh:0.25, wc:0.15, wl:0.15, wa:0.30, wm:0.15, primaryHue:60, accentHue:30 }
+};
+document.querySelectorAll('.panel-reset').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const m = btn.dataset.reset;
+    const d = PANEL_DEFAULTS[m];
+    if (!d) return;
+    if (m === 'hsl'){
+      HSL_OPTS = { ...d };
+      document.getElementById('hslScheme').value = d.scheme;
+      document.getElementById('hslSat').value    = d.satDrop;
+      document.getElementById('hslLight').value  = d.lightBias;
+      syncHslLabels();
+    } else if (m === 'material'){
+      MAT_OPTS = { ...d };
+      document.getElementById('matFilter').value = d.filter;
+      document.getElementById('matSweet').value  = d.sweet;
+      document.getElementById('matMin').value    = d.minDist;
+      syncMatLabels();
+    } else if (m === 'hybrid'){
+      HYB_OPTS = { ...d };
+      document.getElementById('hybScheme').value = d.scheme;
+      document.getElementById('hybSat').value    = d.satDrop;
+      document.getElementById('hybSnap').value   = d.snapLevel;
+      syncHybLabels();
+    } else if (m === 'oklch'){
+      WEIGHTS = { ...d };
+      document.getElementById('wh').value  = d.wh;
+      document.getElementById('wc').value  = d.wc;
+      document.getElementById('wl').value  = d.wl;
+      document.getElementById('wa').value  = d.wa;
+      document.getElementById('wm').value  = d.wm;
+      document.getElementById('wv').value  = d.primaryHue;
+      document.getElementById('wav').value = d.accentHue;
+      document.getElementById('wh-val').textContent  = d.wh.toFixed(2);
+      document.getElementById('wc-val').textContent  = d.wc.toFixed(2);
+      document.getElementById('wl-val').textContent  = d.wl.toFixed(2);
+      document.getElementById('wa-val').textContent  = d.wa.toFixed(2);
+      document.getElementById('wm-val').textContent  = d.wm.toFixed(2);
+      document.getElementById('wv-val').textContent  = d.primaryHue + '°';
+      document.getElementById('wav-val').textContent = d.accentHue + '°';
+    }
+    rerender();
+    showToast('Defaults restored');
+  });
+});
+
+// Mobile warning banner — dismiss state persists in localStorage.
+(() => {
+  const mw = document.querySelector('.mobile-warning');
+  if (!mw) return;
+  try {
+    if (localStorage.getItem('mw-dismissed') === '1') mw.classList.add('dismissed');
+  } catch(_){}
+  const closeBtn = document.getElementById('mwCloseBtn');
+  if (closeBtn) closeBtn.addEventListener('click', () => {
+    mw.classList.add('dismissed');
+    try { localStorage.setItem('mw-dismissed', '1'); } catch(_){}
+  });
+})();
 
 // Paper controls — sliders write into PAPER_OPTS and re-render
 function syncPaperControls(){
