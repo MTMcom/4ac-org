@@ -36,10 +36,6 @@
   h1{font-size:clamp(34px,5vw,56px);line-height:1.05;letter-spacing:-.02em;font-weight:600;margin-bottom:14px}
   h1 em{font-style:normal;background:linear-gradient(105deg,var(--accent-grad-a),var(--accent-grad-b));-webkit-background-clip:text;background-clip:text;color:transparent;transition:background .3s ease}
   .lede{font-size:18px;color:var(--muted);max-width:680px;line-height:1.5}
-  @media (max-width:840px){
-    .header-row{flex-direction:column;gap:24px}
-    .header-text{max-width:none}
-  }
 
   /* TOOLBAR */
   .toolbar{display:flex;justify-content:flex-end;gap:8px;margin-bottom:14px;flex-wrap:wrap}
@@ -295,10 +291,6 @@
     width:100%;height:100%;
     pointer-events:none;
   }
-  @media (max-width:760px){
-    .top-row{flex-direction:column;align-items:center}
-    .hue-map-wrap{width:200px;height:200px;align-self:center}
-  }
 
   /* SUGGESTIONS */
   .suggestions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:48px}
@@ -390,16 +382,6 @@
   .pair-score{font-size:22px;font-weight:600;text-align:right;letter-spacing:-.01em}
   .pair-score small{font-size:12px;color:var(--muted);font-weight:500}
 
-  /* Collapse to a tighter stacked layout on narrow viewports */
-  @media (max-width:840px){
-    .pair-row{
-      grid-template-columns: 56px 1fr 80px;
-      gap:14px;
-    }
-    .pair-row .components{grid-column:1/-1}
-    .pair-row .pair-wcag{grid-column:2/3}
-  }
-
   /* ALGORITHM SECTION */
   .algorithm{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow)}
   .algorithm h2{font-size:24px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
@@ -479,11 +461,6 @@
   .view-controls .vc-regen:active{transform:translateY(0) scale(1)}
   .view-controls .vc-regen svg{width:13px;height:13px;display:block;transition:transform .35s ease}
   .view-controls .vc-regen:focus-visible{outline:2px solid var(--fg);outline-offset:3px;border-radius:999px}
-  @media (max-width:680px){
-    .view-controls{padding:10px}
-    .view-controls .vc-spacer{display:none}
-    .view-controls .vc-regen{width:100%;justify-content:center;margin-top:4px}
-  }
 
   /* COLOR GRADES (100–900) — Tailwind-style scale beneath each swatch.
      In Grid mode → 9 cells side-by-side. In Line mode → 9 cells stacked vertically
@@ -561,12 +538,6 @@
      All 7 swatches on ONE line when space allows; falls back to 4+3 (4 on top,
      3 on bottom) on narrower viewports; finally 2-column on very narrow. */
   .paper-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-bottom:56px}
-  @media (max-width:1020px){
-    .paper-grid{grid-template-columns:repeat(4,1fr)}  /* 7 items → 4 on top, 3 below */
-  }
-  @media (max-width:560px){
-    .paper-grid{grid-template-columns:repeat(2,1fr)}
-  }
   .paper{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow)}
   .paper-color{aspect-ratio:1.6;display:flex;flex-direction:column;justify-content:space-between;padding:14px;cursor:pointer;position:relative}
   .paper-name{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;opacity:.85}
@@ -691,9 +662,6 @@
     padding:6px;box-shadow:var(--shadow);
     width:340px;flex-shrink:0;
   }
-  @media (max-width:840px){
-    .method-tabs{width:100%}
-  }
   /* Header label so users see this as a chooser, not a numbered list of steps */
   .method-tabs-header{
     padding:10px 14px 8px;
@@ -785,11 +753,72 @@
   .export-menu button:hover{background:var(--code-bg)}
   .export-menu button .ext{font-size:10px;color:var(--muted);font-weight:400}
 
-  @media (max-width:640px){
-    .container{padding:28px 18px 60px}
+  /* ============================================================
+     RESPONSIVE — two breakpoints
+
+     Tablet (≤1023px): header stacks, method tabs go full-width,
+     palette becomes 2×2, paper drops to 4 columns, compatibility
+     breakdown collapses to a 3-column grid with components below,
+     view-controls regen takes its own row.
+
+     Mobile (≤639px): single column everything; OKLCH weights,
+     hue wheel, per-method tuning panel, the 5-component scoring
+     strip, and the 100–900 grade ramps all hide — phone becomes a
+     view-and-share experience, not a tuning experience. The input
+     bar stacks vertically, method tabs drop their descriptions,
+     and view-controls keeps only Grid/Line + Try another.
+     ============================================================ */
+  @media (max-width:1023px){
+    .header-row{flex-direction:column;gap:24px}
+    .header-text{max-width:none}
+    .method-tabs{width:100%}
+    .top-row{flex-direction:column;align-items:stretch}
+    .hue-map-wrap{align-self:center}
+    .palette{grid-template-columns:repeat(2,1fr)}
+    .paper-grid{grid-template-columns:repeat(4,1fr)}
+    .pair-row{grid-template-columns:56px 1fr 80px;gap:14px}
+    .pair-row .components{grid-column:1/-1}
+    .pair-row .pair-wcag{grid-column:2/3}
+    .view-controls{padding:10px}
+    .view-controls .vc-spacer{display:none}
+    .view-controls .vc-regen{width:100%;justify-content:center;margin-top:4px}
+  }
+
+  @media (max-width:639px){
+    .container{padding:28px 14px 60px}
+    .palette{grid-template-columns:1fr}
+    .paper-grid{grid-template-columns:repeat(2,1fr)}
     .pair-row{grid-template-columns:1fr;gap:10px}
-    .components{grid-template-columns:repeat(5,1fr)}
     .pair-score{text-align:left}
+    /* Hide tuning + analysis features.
+       method-panel needs the .active override because the desktop rule
+       .method-panel.active{display:flex} has higher specificity. */
+    .components{display:none}
+    .weights{display:none}
+    .hue-map-wrap{display:none}
+    .method-panel,
+    .method-panel.active{display:none}
+    .grade-strip{display:none}
+    /* Input bar collapses to vertical stack */
+    .input-bar{flex-direction:column;align-items:stretch;gap:12px;padding:12px}
+    .input-bar .swatch-input{width:56px;height:56px;align-self:flex-start}
+    .input-bar .hex-field{min-width:0;width:100%}
+    .input-bar .tag-zone{padding:0}
+    .input-bar .presets{justify-content:flex-start}
+    /* Method tabs: one-per-row, drop descriptions */
+    .method-tab{padding:14px 14px 14px 40px}
+    .method-tab .tab-desc{display:none}
+    /* View controls: keep only Grid/Line + Try another */
+    .view-controls .vc-group[aria-label*="grade" i],
+    .view-controls .vc-group[aria-label*="WCAG" i],
+    .view-controls .vc-label{display:none}
+    /* Tag popover stays within viewport */
+    .tag-popover{max-width:calc(100vw - 32px)}
+    /* Compatibility breakdown padding tightens */
+    .breakdown{padding:16px}
+    /* Toolbar buttons get a bit smaller */
+    .toolbar{justify-content:flex-start}
+    .toolbar-btn{padding:7px 10px;font-size:11px}
   }
 </style>
 </head>
