@@ -318,7 +318,7 @@
 
   .status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:56px}
   .status{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow)}
-  .status-color{aspect-ratio:1.6;display:flex;align-items:flex-end;padding:14px;cursor:pointer;position:relative}
+  .status-color{aspect-ratio:1.4;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:16px;cursor:pointer;position:relative}
   .status-meta{padding:10px 14px;background:var(--card);font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid var(--line)}
   .status-meta .hex{color:var(--fg)}
   .status-name{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
@@ -739,8 +739,6 @@
   .swatch-color.light-text .snap-badge{background:rgba(255,255,255,.22)}
   .material-name,
   .color-name{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.01em;margin-top:8px;opacity:.92;line-height:1.3}
-  .color-name .approx{font-family:var(--mono);font-size:10px;font-weight:400;opacity:.55;margin-left:4px;text-transform:uppercase;letter-spacing:.08em}
-  .status-color .color-name{font-size:11px;margin-top:4px;opacity:.85}
 
 
   /* EXPORT POPOVER */
@@ -2935,7 +2933,7 @@ function renderPalette(p){
     // Auto color name (skip if we already show a material name — it would duplicate)
     const named = item.materialName ? null : nearestColorName(item.hex);
     const nameLine = named
-      ? `<div class="color-name" title="Nearest match in OKLCH ΔE: ${named.dist.toFixed(3)} from ${named.source === 'material' ? 'Material library' : 'CSS named colors'}">${named.name}${named.exact ? '' : '<span class="approx">≈</span>'}</div>`
+      ? `<div class="color-name" title="Nearest match in OKLCH ΔE: ${named.dist.toFixed(3)} from ${named.source === 'material' ? 'Material library' : 'CSS named colors'}">${named.name}</div>`
       : '';
     const metaRight = item.meta ? item.meta : fmtLch(item.color);
     // Failing the user's WCAG minimum vs primary? Mark it visually.
@@ -3001,7 +2999,7 @@ function renderStatus(statuses){
       <div class="status-color ${bestTextColor(s.hex)}" style="background:${s.hex}" data-copy="${s.hex}">
         ${actions}
         <div class="status-name">${s.name}</div>
-        <div class="color-name" title="Nearest match in OKLCH ΔE: ${named.dist.toFixed(3)}">${named.name}${named.exact ? '' : '<span class="approx">≈</span>'}</div>
+        <div class="color-name" title="Nearest match in OKLCH ΔE: ${named.dist.toFixed(3)}">${named.name}</div>
       </div>
       <div class="status-meta">
         <span class="hex">${s.hex}</span>
