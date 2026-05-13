@@ -8,3 +8,6 @@ Thumbs.db
 node_modules/
 *.log
 *.tmp
+
+# MCP tool artifacts (Playwright browser snapshots, extensions)
+.playwright-mcp/
