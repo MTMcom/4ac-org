@@ -2,8 +2,6 @@
 
 **Drop in a single hex. Get a coherent, accessible, production-ready palette in seconds.**
 
-> Built by **[Hicham Zinalabdin](https://github.com/hichamza)** · [makethemaker.com](https://www.makethemaker.com)
-
 One color in → primary + three accents + status colors + a neutral "paper" system + a full 100–900 grade ramp per color — all auditable against WCAG, all exportable, all in a single HTML file with zero dependencies.
 
 No signup. No build step. No backend. Just open it and design.
@@ -78,8 +76,12 @@ Set the minimum to **A, AA, or AAA**. The generator filters its candidate pool s
 ### Export to whatever your stack speaks
 One click on **Export** gives you six formats — covering everything from a poster on Slack to a drop-in `tailwind.config.js`:
 
-![Export menu — PNG, PDF, CSS Variables, Tailwind Config, JSON, Plain Text](assets/10-export.png)
-
+<table>
+<tr>
+<td width="28%" valign="top">
+<img src="assets/10-export.png" alt="Export menu — PNG, PDF, CSS Variables, Tailwind Config, JSON, Plain Text" width="260">
+</td>
+<td valign="top">
 
 | Format | File | What you get |
 |---|---|---|
@@ -89,6 +91,10 @@ One click on **Export** gives you six formats — covering everything from a pos
 | **Tailwind Config** | `.js` | A ready `module.exports = { theme: { extend: { colors: { … } } } }` — every swatch and grade keyed by name. |
 | **JSON** | `.json` | Full structured dump (palette, status, grades, paper, weights, tags, timestamp). For tooling, design tokens pipelines, or your own scripts. |
 | **Plain Text** | `.txt` | Human-readable hex list — fastest way to hand off to a non-technical teammate. |
+
+</td>
+</tr>
+</table>
 
 Everything is generated client-side; no upload, no account, no server round-trip.
 

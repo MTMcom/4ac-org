@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4 Awesome Colorizers — Scored color pairing (v3.1)</title>
+<title>4 Awesome Colorizers — Scored color pairing (v0.3.1)</title>
 <link rel="icon" id="favicon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%235B6CFF'/%3E%3C/svg%3E">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -21,14 +21,12 @@
     --radius:14px;
     --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    --accent-grad-a:#5B6CFF;
-    --accent-grad-b:#5B6CFF;
   }
   .swatch-input,.preset,.pair-dot{border-color:rgba(255,255,255,.08)}
   .toggle.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
   html{font-family:var(--sans);font-size:15px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  body{background:var(--bg);color:var(--fg);line-height:1.55;min-height:100vh}
-  .container{max-width:1180px;margin:0 auto;padding:48px 28px 96px}
+  body{background:var(--bg);color:var(--fg);line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
+  .container{max-width:1180px;width:100%;margin:0 auto;padding:48px 28px 96px;flex:1;display:flex;flex-direction:column}
 
   /* HERO */
   header{padding-bottom:40px;border-bottom:1px solid var(--line);margin-bottom:40px}
@@ -416,7 +414,7 @@
   details summary::after{content:'+';margin-left:auto;font-size:16px;transition:transform .2s}
   details[open] summary::after{content:'−'}
 
-  footer{text-align:center;padding:48px 0 0;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
+  footer{text-align:center;padding:48px 0 0;margin-top:auto;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
 
   /* DARK BG SUPPORT FOR SWATCH TEXT */
   .swatch-color.light-text{color:rgba(255,255,255,.95)}
