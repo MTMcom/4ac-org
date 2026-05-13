@@ -80,7 +80,9 @@ Set the minimum to **A, AA, or AAA**. The generator filters its candidate pool s
 ### Export to whatever your stack speaks
 One click on **Export** gives you six formats — covering everything from a poster on Slack to a drop-in `tailwind.config.js`:
 
-![Export menu — PNG, PDF, CSS Variables, Tailwind Config, JSON, Plain Text](assets/10-export.png)
+<p align="center">
+  <img alt="Export menu — PNG, PDF, CSS Variables, Tailwind Config, JSON, Plain Text" src="assets/10-export.png" width="220">
+</p>
 
 | Format | File | What you get |
 |---|---|---|
