@@ -795,12 +795,25 @@
     .container{padding:28px 14px 60px}
     .palette{grid-template-columns:repeat(2,1fr)}
     .paper-grid{grid-template-columns:repeat(2,1fr)}
-    .pair-row{grid-template-columns:1fr;gap:8px;padding:14px 0}
-    /* Reset the tablet rule's grid-column placements so children flow into
-       the single mobile column instead of generating phantom column tracks. */
-    .pair-row .pair-wcag,
-    .pair-row .components{grid-column:auto}
-    .pair-score{text-align:left;font-size:20px}
+    /* Mirror the desktop horizontal sequence on mobile: swatches → name →
+       WCAG (ratio+pill on one line) → score. Single flex row, vertically
+       centered, name allowed to wrap onto a 2nd line for its hex sub. */
+    .pair-row{
+      display:flex;flex-direction:row;align-items:center;
+      gap:10px;padding:12px 0;
+    }
+    .pair-row > .pair-swatches{flex:none}
+    /* Unnamed wrapper around pair-name + pair-name-sub — takes the remaining
+       width and clips overflow so it never pushes other cells off-screen. */
+    .pair-row > div:not(.pair-swatches):not(.pair-wcag):not(.components):not(.pair-score){
+      flex:1 1 0;min-width:0;
+    }
+    .pair-row > .pair-wcag{
+      flex:none;flex-direction:row;align-items:center;gap:6px;
+    }
+    .pair-row > .pair-score{
+      flex:none;font-size:20px;line-height:1;text-align:right;
+    }
     /* Hide tuning + analysis features.
        method-panel needs the .active override because the desktop rule
        .method-panel.active{display:flex} has higher specificity. */
