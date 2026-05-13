@@ -183,7 +183,7 @@
   .input-bar{flex-wrap:wrap}
 
   /* WEIGHTS */
-  .weights{display:flex;gap:18px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;margin-bottom:36px;align-items:center}
+  .weights{display:flex;gap:18px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 90px 14px 18px;margin-bottom:36px;align-items:center}
   .weights-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
   .weight{display:flex;flex-direction:column;gap:4px;min-width:90px;flex:1}
   .weight-head{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:11px}
@@ -727,7 +727,7 @@
   .method-tab:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 
   /* METHOD-SPECIFIC PANELS */
-  .method-panel{display:none;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow)}
+  .method-panel{display:none;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 90px 14px 18px;box-shadow:var(--shadow)}
   .method-panel.active{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
   .method-panel .panel-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
   .method-panel .control{display:flex;flex-direction:column;gap:5px;min-width:140px;flex:1}
@@ -816,6 +816,12 @@
     .view-controls .vc-regen{width:100%;justify-content:center;margin-top:4px}
   }
 
+  /* Mobile-only warning banner — hidden by default; the mobile media block
+     below turns it into a flex row. Must sit BEFORE the @media block so
+     the media-query rule wins via source order. */
+  .mobile-warning{display:none}
+  .mobile-warning.dismissed{display:none!important}
+
   @media (max-width:639px){
     .container{padding:28px 14px 60px}
     .palette{grid-template-columns:repeat(2,1fr)}
@@ -844,9 +850,9 @@
     .components{display:none}
     .hue-map-wrap{display:none}
     .grade-strip{display:none}
-    /* Per-method tuning panels — stack controls vertically. Generous tap
-       targets: bigger slider thumbs, thicker tracks, taller selects, more
-       breathing room between controls. */
+    /* Per-method tuning panels — stack controls vertically. Reset stays
+       top-right (absolute) and doesn't collide with the left-aligned label
+       on row 1, so normal padding is fine. */
     .method-panel.active{flex-direction:column;align-items:stretch;gap:20px;padding:18px 16px}
     .method-panel .control{min-width:0;width:100%;flex:none;gap:8px}
     .weights{flex-direction:column;align-items:stretch;gap:20px;padding:18px 16px}
@@ -941,10 +947,6 @@
     }
     .mobile-warning .mw-close:hover{color:var(--fg);background:var(--code-bg)}
   }
-  /* Hidden by default; the mobile media query above turns it into a flex
-     row. Dismiss state survives reloads via localStorage. */
-  .mobile-warning{display:none}
-  .mobile-warning.dismissed{display:none!important}
 </style>
 </head>
 <body>
