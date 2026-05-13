@@ -260,6 +260,18 @@
   .status-color .swatch-actions{top:8px;right:8px;gap:4px}
   .status-color .swatch-action{width:22px;height:22px;border-radius:5px}
   .status-color .swatch-action svg{width:11px;height:11px}
+  /* Hide action icons by default on devices that support hover — reveal on
+     card hover. A locked action button always stays visible until unlocked.
+     On touch devices (no real hover) keep the icons permanently visible. */
+  @media (hover:hover){
+    .swatch-action{opacity:0;pointer-events:none;transition:opacity .15s ease,background .15s,color .15s,transform .15s}
+    .swatch-color:hover .swatch-action,
+    .status-color:hover .swatch-action,
+    .swatch-color:focus-within .swatch-action,
+    .status-color:focus-within .swatch-action{opacity:1;pointer-events:auto}
+    .swatch-color .swatch-action.locked,
+    .status-color .swatch-action.locked{opacity:1;pointer-events:auto}
+  }
 
   /* TOP ROW — input + weights stacked, wheel on the side */
   .top-row{display:flex;gap:18px;align-items:flex-start;margin-bottom:36px}
