@@ -4473,6 +4473,11 @@ document.addEventListener('keydown', (e) => {
 });
 document.getElementById('resetBtn').addEventListener('click', resetAll);
 
+// Capture the inbound hash BEFORE any init code writes to it.
+// setMethod() → rerender() → updateHash() persists the default state to the URL,
+// which would otherwise mask a genuinely-empty hash and prevent randomization.
+const _originalHash = window.location.hash;
+
 // Initial method state — sync labels, then activate the current method's tab + panel.
 // (setMethod toggles .active classes AND calls rerender, so the panel is shown on first paint.)
 syncHslLabels();
@@ -4487,7 +4492,7 @@ setMethod(CURRENT_METHOD);
 // the URL hash from prior interaction is intentionally ignored. Hash-restore
 // stays in effect for fresh navigation (clicking a shared link).
 const _isReload = (performance.getEntriesByType('navigation')[0] || {}).type === 'reload';
-if (!_isReload && applyHash(window.location.hash)) {
+if (!_isReload && applyHash(_originalHash)) {
   rerender();
 } else {
   update(randomHex());
