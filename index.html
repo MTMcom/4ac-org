@@ -910,9 +910,19 @@
     body.view-line .status:first-of-type{border-left:0}
     /* Compatibility breakdown padding tightens */
     .breakdown{padding:16px}
-    /* Toolbar buttons get a bit smaller */
-    .toolbar{justify-content:flex-start}
-    .toolbar-btn{padding:7px 10px;font-size:11px}
+    /* Toolbar buttons — bigger tap targets */
+    .toolbar{justify-content:flex-start;gap:10px}
+    .toolbar-btn{padding:10px 14px;font-size:12px;min-height:44px;border-radius:10px}
+    .toolbar-btn svg{width:14px;height:14px}
+    /* View controls — Grid/Line segments and Try Other Accents */
+    .view-controls{padding:12px;gap:12px}
+    .view-controls .vc-segment{padding:10px 14px;font-size:12px;min-height:44px;border-radius:10px}
+    .view-controls .vc-segment svg{width:13px;height:13px}
+    .view-controls .vc-regen{padding:13px 22px;font-size:12px;min-height:48px;border-radius:999px}
+    .view-controls .vc-regen svg{width:15px;height:15px}
+    /* Paper "Tune" button matches toolbar treatment */
+    .section-regen{padding:10px 14px;font-size:11px;min-height:44px;border-radius:10px}
+    .section-regen svg{width:14px;height:14px}
     /* Mobile-only warning banner */
     .mobile-warning{
       display:flex;align-items:center;gap:10px;
