@@ -76,12 +76,7 @@ Set the minimum to **A, AA, or AAA**. The generator filters its candidate pool s
 ### Export to whatever your stack speaks
 One click on **Export** gives you six formats — covering everything from a poster on Slack to a drop-in `tailwind.config.js`:
 
-<table>
-<tr>
-<td width="28%" valign="top">
-<img src="assets/10-export.png" alt="Export menu — PNG, PDF, CSS Variables, Tailwind Config, JSON, Plain Text" width="260">
-</td>
-<td valign="top">
+![Export menu — PNG, PDF, CSS Variables, Tailwind Config, JSON, Plain Text](assets/10-export.png)
 
 | Format | File | What you get |
 |---|---|---|
@@ -91,10 +86,6 @@ One click on **Export** gives you six formats — covering everything from a pos
 | **Tailwind Config** | `.js` | A ready `module.exports = { theme: { extend: { colors: { … } } } }` — every swatch and grade keyed by name. |
 | **JSON** | `.json` | Full structured dump (palette, status, grades, paper, weights, tags, timestamp). For tooling, design tokens pipelines, or your own scripts. |
 | **Plain Text** | `.txt` | Human-readable hex list — fastest way to hand off to a non-technical teammate. |
-
-</td>
-</tr>
-</table>
 
 Everything is generated client-side; no upload, no account, no server round-trip.
 
@@ -153,4 +144,4 @@ Also works as-is on Netlify, Vercel, Cloudflare Pages, S3, or any static host.
 
 ---
 
-Made by **[Hicham Zinalabdin](https://github.com/hichamza)** at [makethemaker.com](https://www.makethemaker.com).
+Made by **[Hicham Zinalabdin](https://github.com/hichamza)**.
