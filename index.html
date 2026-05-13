@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4 Awesome Colorizers — Scored color pairing (v0.3.1)</title>
+<title>4 Awesome Colorizers — Scored color pairing (v0.3.2)</title>
 <link rel="icon" id="favicon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%235B6CFF'/%3E%3C/svg%3E">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -86,16 +86,19 @@
   /* TAG SELECTOR — compact inline pill in the input bar */
   .tag-zone{display:flex;align-items:center;gap:8px;flex:1;min-width:0;flex-wrap:wrap;padding:0 6px}
   .tag-trigger{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 14px;border-radius:999px;
-    background:transparent;border:1.2px dashed var(--line);
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;
-    color:var(--muted);cursor:pointer;
-    transition:all .15s ease;
+    display:inline-flex;align-items:center;gap:8px;
+    padding:7px 10px 7px 12px;border-radius:8px;
+    background:var(--bg);border:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;letter-spacing:.04em;font-weight:500;
+    color:var(--fg);cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
   }
-  .tag-trigger:hover{background:var(--code-bg);border-color:var(--muted);border-style:solid;color:var(--fg);transform:translateY(-1px)}
-  .tag-trigger.has-tags{border-style:solid;border-color:var(--fg);color:var(--fg)}
-  .tag-trigger svg{width:11px;height:11px}
+  .tag-trigger:hover{border-color:var(--muted);background:var(--code-bg)}
+  .tag-trigger[aria-expanded="true"]{border-color:var(--fg)}
+  .tag-trigger.has-tags{border-color:var(--fg)}
+  .tag-trigger .tag-icon{width:13px;height:13px;color:var(--muted)}
+  .tag-trigger .tag-caret{width:11px;height:11px;color:var(--muted);margin-left:2px;transition:transform .15s ease}
+  .tag-trigger[aria-expanded="true"] .tag-caret{transform:rotate(180deg)}
   .tag-trigger .badge{
     display:inline-flex;align-items:center;justify-content:center;
     min-width:18px;height:16px;padding:0 5px;border-radius:999px;
@@ -415,6 +418,16 @@
   details[open] summary::after{content:'−'}
 
   footer{text-align:center;padding:48px 0 0;margin-top:auto;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .gh-repo-link{
+    display:inline-flex;align-items:center;gap:7px;
+    margin-top:10px;padding:6px 12px;border-radius:999px;
+    background:var(--card);border:1px solid var(--line);
+    color:var(--fg);text-decoration:none;
+    font-family:var(--mono);font-size:11px;letter-spacing:.05em;
+    transition:border-color .15s ease, background .15s ease, transform .15s ease;
+  }
+  .gh-repo-link:hover{border-color:var(--muted);background:var(--code-bg);transform:translateY(-1px)}
+  .gh-repo-link svg{width:13px;height:13px}
 
   /* DARK BG SUPPORT FOR SWATCH TEXT */
   .swatch-color.light-text{color:rgba(255,255,255,.95)}
@@ -786,7 +799,7 @@
     <header>
       <div class="header-row">
         <div class="header-text">
-          <div class="eyebrow">Palette Algorithm · Four methods · v0.3.1</div>
+          <div class="eyebrow">Palette Algorithm · Four methods · v0.3.2</div>
           <h1>Modern color pairing,<br>your <em>method</em> of choice.</h1>
           <p class="lede">Drop in a single hex. Choose how the accents are picked: a weighted OKLCH scorer, classical HSL color theory, a curated material library, or a hybrid that falls back when math gets ugly.</p>
         </div>
@@ -859,9 +872,10 @@
       <div class="tag-zone" id="tagZone">
         <div class="tag-popover-wrap">
           <button class="tag-trigger" id="tagTriggerBtn" aria-haspopup="true" aria-expanded="false" title="Tag your project to refine the suggested colors">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
             <span id="tagTriggerLabel">Tag your project</span>
             <span class="badge" id="tagBadge" style="display:none">0</span>
+            <svg class="tag-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="tag-popover" id="tagPopover" role="dialog" aria-label="Pick tags to refine suggestions">
             <div class="tag-popover-header">Pick tags to refine suggestions</div>
@@ -1056,6 +1070,11 @@
     <footer>
       OKLCH · WCAG 2.1 · drop a hex above to remix<br>
       Built by <a href="https://github.com/hichamza" style="color:inherit;text-decoration:underline">Hicham Zinalabdin</a>
+      <br>
+      <a class="gh-repo-link" href="https://github.com/hichamza/4ac-org" target="_blank" rel="noopener" aria-label="View hichamza/4ac-org on GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span>hichamza/4ac-org</span>
+      </a>
     </footer>
   </div>
 
@@ -2250,7 +2269,7 @@ const TAILWIND_TAGGED = [
 // User-facing tag taxonomy. Order matters for UI.
 const TAG_TAXONOMY = {
   topic: [
-    'fintech', 'banking', 'b2b', 'saas', 'tech', 'agency', 'ecom', 'retail',
+    'fintech', 'banking', 'b2b', 'saas', 'tech', 'ai', 'agency', 'ecom', 'retail',
     'kids', 'education', 'nonprofit', 'healthcare', 'wellness', 'fitness',
     'food', 'restaurants', 'hospitality', 'fashion', 'beauty', 'photography',
     'gaming', 'music', 'travel', 'automotive', 'real-estate', 'dating', 'crypto'
@@ -2273,6 +2292,7 @@ const TAG_CONFLICTS = [
   ['premium', 'kids'], ['premium', 'gaming'], ['premium', 'playful'],
   ['kids', 'b2b'], ['kids', 'fintech'], ['kids', 'professional'],
   ['fintech', 'gaming'], ['fintech', 'playful'],
+  ['ai', 'retro'], ['ai', 'cozy'],
   ['professional', 'playful'], ['professional', 'kids'],
   ['modern', 'organic'], ['modern', 'retro'], ['modern', 'vintage'],
   ['minimal', 'dramatic'], ['minimal', 'vivid'], ['minimal', 'bold'],
@@ -2315,6 +2335,7 @@ const TAG_EFFECTS = {
   education:  { hsl: { scheme: 'analogous', satDrop: 22, lightBias: 4 }, hybrid: { snapLevel: 'low', satDrop: 22 }, oklch: { wc: 0.20, wa: 0.30, wh: 0.20 } },
   travel:     { hsl: { scheme: 'analogous', satDrop: 22 }, hybrid: { snapLevel: 'low', satDrop: 22 },     oklch: { wc: 0.20, wh: 0.22, wm: 0.18 } },
   tech:       { hsl: { scheme: 'analogous', satDrop: 30 }, hybrid: { snapLevel: 'medium', satDrop: 30 },  oklch: { wa: 0.32, wm: 0.20, wc: 0.13 } },
+  ai:         { hsl: { scheme: 'analogous', satDrop: 12, lightBias: -3 }, hybrid: { snapLevel: 'low', satDrop: 12 }, oklch: { wc: 0.26, wh: 0.22, wm: 0.20, wa: 0.25 } },
   wellness:   { hsl: { scheme: 'analogous', satDrop: 35, lightBias: 6 }, hybrid: { snapLevel: 'medium', satDrop: 35 }, oklch: { wa: 0.30, wm: 0.20, wc: 0.10 } },
 
   // New feels
@@ -2378,6 +2399,7 @@ const DERIVED_TAGS = {
   'real-estate':(c) => c.tags.includes('professional') || c.tags.includes('b2b') || c.tags.includes('premium'),
   dating:       (c) => c.tags.includes('beauty') || (c.tags.includes('warm') && c.tags.includes('vivid')),
   crypto:       (c) => c.tags.includes('fintech') || c.tags.includes('gaming') || c.tags.includes('vivid'),
+  ai:           (c) => /indigo|violet|purple|fuchsia|sky|cyan|teal|md-indigo|md-deep-purple|md-purple|md-cyan|md-teal/.test(c.family) && (c.tags.includes('vivid') || c.tags.includes('bold') || c.tags.includes('deep')),
 
   // ===== Feel mappings (logical compositions of existing feels/families) =====
   minimal:      (c) => c.tags.includes('neutral') || c.tags.includes('subtle') || (c.tags.includes('light') && c.tags.includes('calm')),
@@ -2486,7 +2508,7 @@ function generatePaletteMaterial(primaryHex, opts={}){
   // Tag-driven filter: include the bigger Tailwind library when tags are active so we have variety
   if (SELECTED_TAGS.size > 0){
     const tagged = TAILWIND_TAGGED
-      .map(c => ({ name: c.name, hex: c.hex, tags: c.tags }))
+      .map(c => ({ name: c.name, hex: c.hex, tags: c.tags, family: c.family }))
       .filter(c => scoreColorByTags(c) >= 0.5);
     pool = pool.filter(m => SELECTED_TAGS.size === 0 || [...SELECTED_TAGS].some(t => m.tags.includes(t)))
                .concat(tagged);

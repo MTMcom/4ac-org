@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" role="img" aria-label="Try it live — 4 Awesome Colorizers">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A2238"/>
+      <stop offset="100%" stop-color="#312C85"/>
+    </linearGradient>
+    <clipPath id="logoClip">
+      <rect width="76" height="76" rx="14"/>
+    </clipPath>
+    <filter id="glow" x="-20%" y="-30%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#5B6CFF" flood-opacity="0.30"/>
+    </filter>
+  </defs>
+
+  <rect x="20" y="20" width="720" height="180" rx="24" fill="url(#bg)" filter="url(#glow)"/>
+
+  <g transform="translate(60, 72)">
+    <rect width="76" height="76" rx="14" fill="#FFFFFF" fill-opacity="0.10"/>
+    <g clip-path="url(#logoClip)">
+      <rect width="38" height="38" fill="#5B6CFF"/>
+      <rect x="38" width="38" height="38" fill="#EC4899"/>
+      <rect y="38" width="38" height="38" fill="#F59E0B"/>
+      <rect x="38" y="38" width="38" height="38" fill="#A855F7"/>
+    </g>
+  </g>
+
+  <text x="166" y="112"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif"
+        font-size="46" font-weight="700" fill="#FFFFFF" letter-spacing="-0.8">Try it live →</text>
+  <text x="166" y="148"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif"
+        font-size="18" font-weight="500" fill="#FFFFFF" letter-spacing="0.2">No signup. No build step. No backend. Just open it and design.</text>
+</svg>
