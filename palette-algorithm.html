@@ -4,20 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2ESEYDPSB"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0JFGHY8J5"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-Q2ESEYDPSB');
+  gtag('config', 'G-Z0JFGHY8J5');
 </script>
 <script>
 function track(event, params){ if (typeof gtag === 'function') gtag('event', event, params || {}); }
 let _dbt = {};
 function trackDebounced(event, params){ clearTimeout(_dbt[event]); _dbt[event] = setTimeout(() => track(event, params), 1500); }
 </script>
-<title>Palette Algorithm — Scored color pairing in OKLCH (v3.1)</title>
-<link rel="icon" id="favicon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%235B6CFF'/%3E%3C/svg%3E">
+<title>4ac — Palette Algorithm · Scored color pairing in OKLCH</title>
+<meta name="description" content="How 4ac builds color palettes: OKLCH scoring, HSL theory, Material library, and Hybrid — the algorithm explained.">
+<meta property="og:title" content="4ac — Palette Algorithm">
+<meta property="og:description" content="How 4ac builds color palettes: OKLCH scoring, HSL theory, Material library, and Hybrid — the algorithm explained.">
+<meta property="og:url" content="https://4ac.org/palette-algorithm">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4ac — Palette Algorithm">
+<meta name="twitter:description" content="How 4ac builds color palettes: OKLCH, HSL, Material, Hybrid — explained.">
+<link rel="canonical" href="https://4ac.org/palette-algorithm">
+<link rel="icon" id="favicon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F0F0F'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-size='13' font-weight='800' letter-spacing='-1' fill='%235B6CFF'%3E4ac%3C/text%3E%3C/svg%3E">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -63,6 +72,10 @@ function trackDebounced(event, params){ clearTimeout(_dbt[event]); _dbt[event] =
   h1{font-size:clamp(34px,5vw,56px);line-height:1.05;letter-spacing:-.02em;font-weight:600;margin-bottom:14px}
   h1 em{font-style:normal;background:linear-gradient(105deg,var(--accent-grad-a),var(--accent-grad-b));-webkit-background-clip:text;background-clip:text;color:transparent;transition:background .3s ease}
   .lede{font-size:18px;color:var(--muted);max-width:680px;line-height:1.5}
+  .wordmark{display:inline-flex;align-items:baseline;gap:1px;font-size:26px;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:18px;text-decoration:none}
+  .wordmark .wm-4{background:linear-gradient(105deg,var(--accent-grad-a,#5B6CFF),var(--accent-grad-b,#A78BFA));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .wordmark .wm-ac{color:var(--fg)}
+  .wordmark .wm-tld{font-size:13px;font-weight:500;color:var(--muted);margin-left:4px;letter-spacing:0}
   @media (max-width:840px){
     .header-row{flex-direction:column;gap:24px}
     .header-text{max-width:none}
@@ -813,7 +826,10 @@ function trackDebounced(event, params){ clearTimeout(_dbt[event]); _dbt[event] =
     <header>
       <div class="header-row">
         <div class="header-text">
-          <div class="eyebrow">Palette Algorithm · Four methods · 2026</div>
+          <a href="https://4ac.org" class="wordmark" title="4 Amazing Colorizers">
+            <span class="wm-4">4</span><span class="wm-ac">ac</span><span class="wm-tld">.org</span>
+          </a>
+          <div class="eyebrow">4 Amazing Colorizers · Palette Algorithm · 2026</div>
           <h1>Modern color pairing,<br>your <em>method</em> of choice.</h1>
           <p class="lede">Drop in a single hex. Choose how the accents are picked: a weighted OKLCH scorer, classical HSL color theory, a curated material library, or a hybrid that falls back when math gets ugly.</p>
         </div>
