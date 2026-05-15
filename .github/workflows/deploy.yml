@@ -20,11 +20,13 @@ jobs:
           DEPLOY_PATH: /home/domains/4ac.org/public_html/
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_KEY" | tr -d '\r' > /tmp/deploy_key
+          sudo apt-get install -y -q putty-tools
+          echo "$SSH_KEY" | tr -d '\r' > /tmp/deploy_key.ppk
+          puttygen /tmp/deploy_key.ppk -O private-openssh -o /tmp/deploy_key
           chmod 600 /tmp/deploy_key
           ssh-keyscan -p 65002 "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           rsync -avz --delete \
             -e "ssh -i /tmp/deploy_key -p 65002 -o StrictHostKeyChecking=no" \
             index.html palette-algorithm.html assets/ \
             "$SSH_USER@$SSH_HOST:$DEPLOY_PATH"
-          rm /tmp/deploy_key
+          rm /tmp/deploy_key /tmp/deploy_key.ppk
