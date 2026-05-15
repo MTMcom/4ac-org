@@ -11,7 +11,18 @@ def read_mpint(d, o):
     return int.from_bytes(d[o+4:o+4+n], 'big'), o+4+n
 
 raw = os.environ.get('SSH_KEY', '')
+print(f"[diag] raw length: {len(raw)}")
+print(f"[diag] actual newlines: {raw.count(chr(10))}")
+print(f"[diag] literal \\\\n: {raw.count(chr(92)+'n')}")
+print(f"[diag] first line repr: {repr(raw[:80])}")
+
+# Handle both actual newlines and escaped \n sequences
+if raw.count('\n') < 3:
+    raw = raw.replace('\\n', '\n')
+
 lines = raw.replace('\r\n', '\n').replace('\r', '\n').strip().split('\n')
+print(f"[diag] line count after split: {len(lines)}")
+print(f"[diag] first 3 lines: {lines[:3]}")
 
 def get_val(key):
     return next(l.split(': ', 1)[1] for l in lines if l.startswith(key))
