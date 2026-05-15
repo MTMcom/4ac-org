@@ -20,7 +20,7 @@ jobs:
           DEPLOY_PATH: /home/domains/4ac.org/public_html/
         run: |
           mkdir -p ~/.ssh
-          python3 .github/scripts/ppk_to_pem.py /tmp/deploy_key
+          echo "$SSH_KEY" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
           ssh-keyscan -p 65002 "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           rsync -avz --delete \
