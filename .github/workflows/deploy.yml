@@ -20,7 +20,7 @@ jobs:
           DEPLOY_PATH: /home/domains/4ac.org/public_html/
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_KEY" > /tmp/deploy_key
+          echo "$SSH_KEY" | tr -d '\r' > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
           ssh-keyscan -p 65002 "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           rsync -avz --delete \
