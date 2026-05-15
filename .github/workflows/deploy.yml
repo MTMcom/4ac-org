@@ -17,7 +17,7 @@ jobs:
           SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
           SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
           SSH_USER: u398531889
-          DEPLOY_PATH: /home/domains/4ac.org/public_html/
+          DEPLOY_PATH: /home/u398531889/domains/4ac.org/public_html/
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > /tmp/deploy_key
