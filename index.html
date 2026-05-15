@@ -3,7 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4 Awesome Colorizers — Scored color pairing (v0.3.4)</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0JFGHY8J5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z0JFGHY8J5');
+</script>
+<script>
+function track(event, params){ if (typeof gtag === 'function') gtag('event', event, params || {}); }
+let _dbt = {};
+function trackDebounced(event, params){ clearTimeout(_dbt[event]); _dbt[event] = setTimeout(() => track(event, params), 1500); }
+</script>
+<title>4 Awesome Colorizers — Scored color pairing (v0.3.5)</title>
 <link rel="icon" id="favicon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%235B6CFF'/%3E%3C/svg%3E">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -960,7 +973,7 @@
     <header>
       <div class="header-row">
         <div class="header-text">
-          <div class="eyebrow">Palette Algorithm · Four methods · v0.3.4</div>
+          <div class="eyebrow">Palette Algorithm · Four methods · v0.3.5</div>
           <h1>Modern color pairing,<br>your <em>method</em> of choice.</h1>
           <p class="lede">Drop in a single hex. Choose how the accents are picked: a weighted OKLCH scorer, classical HSL color theory, a curated material library, or a hybrid that falls back when math gets ugly.</p>
         </div>
@@ -4187,6 +4200,7 @@ document.addEventListener('click', (e) => {
     e.stopPropagation();
     const slot = editBtn.dataset.edit;
     const currentHex = editBtn.dataset.hex;
+    track('swatch_edit', {slot});
     pickColorFor(slot, currentHex);
     return;
   }
@@ -4197,6 +4211,7 @@ document.addEventListener('click', (e) => {
     const slot = lockBtn.dataset.lock;
     if (LOCKS[slot]){
       delete LOCKS[slot];
+      track('swatch_unlock', {slot});
       showToast(`Unlocked ${slot}`);
     } else {
       // Find current swatch hex from the parent swatch-color background
@@ -4204,6 +4219,7 @@ document.addEventListener('click', (e) => {
       const hex = swatchColor && swatchColor.dataset.copy;
       if (hex){
         LOCKS[slot] = hex;
+        track('swatch_lock', {slot, hex});
         showToast(`Locked ${slot} → ${hex}`);
       }
     }
@@ -4217,6 +4233,7 @@ document.addEventListener('click', (e) => {
     const slot = regenBtn.dataset.regen;
     if (LOCKS[slot]) return;  // Locked: no-op (button is visually disabled)
     SLOT_VERSION[slot] = (SLOT_VERSION[slot] || 0) + 1;
+    track('swatch_regen', {slot});
     rerender();
     showToast(`Regenerated ${slot}`);
     return;
@@ -4224,6 +4241,7 @@ document.addEventListener('click', (e) => {
   // Variant promote (click on a suggestion card)
   const suggest = e.target.closest('[data-suggest]');
   if (suggest){
+    track('variant_promote', {hex: suggest.dataset.suggest});
     update(suggest.dataset.suggest, { isPromote: true });
     showToast(`Promoted ${suggest.dataset.suggest}`);
     return;
@@ -4232,23 +4250,25 @@ document.addEventListener('click', (e) => {
   const target = e.target.closest('[data-copy]');
   if (target){
     const hex = target.dataset.copy;
+    track('color_copy', {hex});
     navigator.clipboard?.writeText(hex);
     showToast(`Copied ${hex}`);
   }
   // Preset chip in the input bar
   const preset = e.target.closest('.preset');
-  if (preset) update(preset.dataset.hex);
+  if (preset){ track('preset_chip_click', {hex: preset.dataset.hex}); update(preset.dataset.hex); }
 });
 
-document.getElementById('colorInput').addEventListener('input', (e) => update(e.target.value));
+document.getElementById('colorInput').addEventListener('input', (e) => { trackDebounced('color_picker_change', {hex: e.target.value}); update(e.target.value); });
 document.getElementById('hexInput').addEventListener('input', (e) => {
   const v = e.target.value.replace(/[^0-9a-fA-F#]/g,'');
-  if (v.length >= 6) update(v.startsWith('#') ? v : '#' + v);
+  if (v.length >= 6){ trackDebounced('hex_input_change', {hex: v}); update(v.startsWith('#') ? v : '#' + v); }
 });
 
 ['wh','wc','wl','wa','wm','wv','wav'].forEach(id => {
   const el = document.getElementById(id);
   el.addEventListener('input', () => {
+    trackDebounced('weight_adjust', {weight: id, value: el.value});
     WEIGHTS = {
       wh: +document.getElementById('wh').value,
       wc: +document.getElementById('wc').value,
@@ -4441,11 +4461,12 @@ function setupTagEventHandlers(){
     e.stopPropagation();
     const isOpen = popover.classList.toggle('open');
     triggerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (isOpen) track('tag_popover_open');
   });
   // Popover option clicks
   popover.addEventListener('click', (e) => {
     const opt = e.target.closest('.tag-option');
-    if (opt){ toggleTag(opt.dataset.tag); return; }
+    if (opt){ track('tag_toggle', {tag: opt.dataset.tag}); toggleTag(opt.dataset.tag); return; }
   });
   // Close popover on outside click or Escape
   document.addEventListener('click', (e) => {
@@ -4461,11 +4482,11 @@ function setupTagEventHandlers(){
     }
   });
   // Clear all button
-  document.getElementById('tagClearBtn').addEventListener('click', clearAllTags);
+  document.getElementById('tagClearBtn').addEventListener('click', () => { track('tag_clear_all'); clearAllTags(); });
   // Inline chip × removal — delegated through document since chips are re-rendered
   document.addEventListener('click', (e) => {
     const x = e.target.closest('[data-untag]');
-    if (x){ e.stopPropagation(); toggleTag(x.dataset.untag); }
+    if (x){ e.stopPropagation(); track('tag_chip_remove', {tag: x.dataset.untag}); toggleTag(x.dataset.untag); }
   });
 }
 
@@ -4507,7 +4528,7 @@ function setMethod(method){
 }
 
 document.querySelectorAll('.method-tab').forEach(tab => {
-  tab.addEventListener('click', () => setMethod(tab.dataset.method));
+  tab.addEventListener('click', () => { track('method_select', {method: tab.dataset.method}); setMethod(tab.dataset.method); });
 });
 
 // HSL panel controls
@@ -4520,9 +4541,9 @@ function syncHslLabels(){
   const lv = +hslLightEl.value;
   document.getElementById('hslLightVal').textContent = (lv >= 0 ? '+' : '') + lv + '%';
 }
-hslSchemeEl.addEventListener('change', () => { HSL_OPTS.scheme = hslSchemeEl.value; syncHslLabels(); rerender(); });
-hslSatEl.addEventListener('input',     () => { HSL_OPTS.satDrop = +hslSatEl.value; syncHslLabels(); rerender(); });
-hslLightEl.addEventListener('input',   () => { HSL_OPTS.lightBias = +hslLightEl.value; syncHslLabels(); rerender(); });
+hslSchemeEl.addEventListener('change', () => { HSL_OPTS.scheme = hslSchemeEl.value; syncHslLabels(); rerender(); track('hsl_scheme_change', {scheme: hslSchemeEl.value}); });
+hslSatEl.addEventListener('input',     () => { HSL_OPTS.satDrop = +hslSatEl.value; syncHslLabels(); rerender(); trackDebounced('hsl_saturation_adjust', {value: hslSatEl.value}); });
+hslLightEl.addEventListener('input',   () => { HSL_OPTS.lightBias = +hslLightEl.value; syncHslLabels(); rerender(); trackDebounced('hsl_lightness_adjust', {value: hslLightEl.value}); });
 
 // Material panel controls
 const matFilterEl = document.getElementById('matFilter');
@@ -4533,9 +4554,9 @@ function syncMatLabels(){
   document.getElementById('matSweetVal').textContent = (+matSweetEl.value).toFixed(2);
   document.getElementById('matMinVal').textContent = (+matMinEl.value).toFixed(2);
 }
-matFilterEl.addEventListener('change', () => { MAT_OPTS.filter = matFilterEl.value; syncMatLabels(); rerender(); });
-matSweetEl.addEventListener('input',   () => { MAT_OPTS.sweet = +matSweetEl.value; syncMatLabels(); rerender(); });
-matMinEl.addEventListener('input',     () => { MAT_OPTS.minDist = +matMinEl.value; syncMatLabels(); rerender(); });
+matFilterEl.addEventListener('change', () => { MAT_OPTS.filter = matFilterEl.value; syncMatLabels(); rerender(); track('material_filter_change', {filter: matFilterEl.value}); });
+matSweetEl.addEventListener('input',   () => { MAT_OPTS.sweet = +matSweetEl.value; syncMatLabels(); rerender(); trackDebounced('material_sweet_adjust', {value: matSweetEl.value}); });
+matMinEl.addEventListener('input',     () => { MAT_OPTS.minDist = +matMinEl.value; syncMatLabels(); rerender(); trackDebounced('material_mindist_adjust', {value: matMinEl.value}); });
 
 // Hybrid panel controls
 const hybSchemeEl = document.getElementById('hybScheme');
@@ -4546,9 +4567,9 @@ function syncHybLabels(){
   document.getElementById('hybSatVal').textContent = hybSatEl.value + '%';
   document.getElementById('hybSnapVal').textContent = hybSnapEl.options[hybSnapEl.selectedIndex].text.replace(/\s*\(.*\)\s*$/, '');
 }
-hybSchemeEl.addEventListener('change', () => { HYB_OPTS.scheme = hybSchemeEl.value; syncHybLabels(); rerender(); });
-hybSatEl.addEventListener('input',     () => { HYB_OPTS.satDrop = +hybSatEl.value; syncHybLabels(); rerender(); });
-hybSnapEl.addEventListener('change',   () => { HYB_OPTS.snapLevel = hybSnapEl.value; syncHybLabels(); rerender(); });
+hybSchemeEl.addEventListener('change', () => { HYB_OPTS.scheme = hybSchemeEl.value; syncHybLabels(); rerender(); track('hybrid_scheme_change', {scheme: hybSchemeEl.value}); });
+hybSatEl.addEventListener('input',     () => { HYB_OPTS.satDrop = +hybSatEl.value; syncHybLabels(); rerender(); trackDebounced('hybrid_saturation_adjust', {value: hybSatEl.value}); });
+hybSnapEl.addEventListener('change',   () => { HYB_OPTS.snapLevel = hybSnapEl.value; syncHybLabels(); rerender(); track('hybrid_snap_change', {snap: hybSnapEl.value}); });
 
 // Unified "Try another" — regenerates palette + status + paper in one click,
 // finding a fresh combination across every unlocked slot. Locks survive.
@@ -4571,7 +4592,7 @@ function regenAll(){
   rerender();
   showToast('New combination');
 }
-document.getElementById('regenAllBtn').addEventListener('click', regenAll);
+document.getElementById('regenAllBtn').addEventListener('click', () => { track('regen_all'); regenAll(); });
 
 // Reset buttons on each method-tuning panel — restore the panel's default
 // option values, sync the visible inputs/labels, then trigger a rerender.
@@ -4621,6 +4642,7 @@ document.querySelectorAll('.panel-reset').forEach(btn => {
       document.getElementById('wv-val').textContent  = d.primaryHue + '°';
       document.getElementById('wav-val').textContent = d.accentHue + '°';
     }
+    track('panel_reset', {method: m});
     rerender();
     showToast('Defaults restored');
   });
@@ -4635,6 +4657,7 @@ document.querySelectorAll('.panel-reset').forEach(btn => {
   } catch(_){}
   const closeBtn = document.getElementById('mwCloseBtn');
   if (closeBtn) closeBtn.addEventListener('click', () => {
+    track('banner_dismiss');
     mw.classList.add('dismissed');
     try { localStorage.setItem('mw-dismissed', '1'); } catch(_){}
   });
@@ -4667,32 +4690,39 @@ function syncPaperControls(){
     };
     syncPaperControls();
     rerender();
+    trackDebounced('paper_adjust', {slider: id, value: el.value});
   });
 });
 // Toggle button on the Paper section header expands/collapses the controls panel
 document.getElementById('paperToggleBtn').addEventListener('click', () => {
   const panel = document.getElementById('paperControls');
-  panel.style.display = (panel.style.display === 'none' || !panel.style.display) ? 'flex' : 'none';
+  const opening = panel.style.display === 'none' || !panel.style.display;
+  panel.style.display = opening ? 'flex' : 'none';
+  track('paper_controls_toggle', {open: opening});
 });
 
 // View mode toggle — grid vs single-line
 document.getElementById('viewGridBtn').addEventListener('click', () => {
   if (VIEW_MODE === 'grid') return;
   VIEW_MODE = 'grid'; applyViewPrefs(); saveViewPrefs();
+  track('view_mode_change', {mode: 'grid'});
 });
 document.getElementById('viewLineBtn').addEventListener('click', () => {
   if (VIEW_MODE === 'line') return;
   VIEW_MODE = 'line'; applyViewPrefs(); saveViewPrefs();
+  track('view_mode_change', {mode: 'line'});
 });
 
 // Grades toggle — show/hide the 100–900 ramp under each swatch
 document.getElementById('gradesOffBtn').addEventListener('click', () => {
   if (!SHOW_GRADES) return;
   SHOW_GRADES = false; applyViewPrefs(); saveViewPrefs();
+  track('grades_toggle', {show: false});
 });
 document.getElementById('gradesOnBtn').addEventListener('click', () => {
   if (SHOW_GRADES) return;
   SHOW_GRADES = true; applyViewPrefs(); saveViewPrefs();
+  track('grades_toggle', {show: true});
 });
 
 // WCAG minimum toggle — A / AA / AAA. Re-renders so generation picks colors that satisfy the new threshold.
@@ -4702,6 +4732,7 @@ document.getElementById('gradesOnBtn').addEventListener('click', () => {
   btn.addEventListener('click', () => {
     if (WCAG_MIN === lv) return;
     WCAG_MIN = lv;
+    track('wcag_min_change', {level: lv});
     applyViewPrefs();
     saveViewPrefs();
     rerender();
@@ -4710,7 +4741,7 @@ document.getElementById('gradesOnBtn').addEventListener('click', () => {
 });
 
 // Toolbar wiring
-document.getElementById('shareBtn').addEventListener('click', shareLink);
+document.getElementById('shareBtn').addEventListener('click', () => { track('share_link'); shareLink(); });
 // Export dropdown: button toggles the menu, menu items dispatch by format
 const exportBtn = document.getElementById('exportBtn');
 const exportMenu = document.getElementById('exportMenu');
@@ -4718,10 +4749,12 @@ exportBtn.addEventListener('click', (e) => {
   e.stopPropagation();
   const isOpen = exportMenu.classList.toggle('open');
   exportBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  if (isOpen) track('export_menu_open');
 });
 exportMenu.addEventListener('click', (e) => {
   const btn = e.target.closest('[data-format]');
   if (!btn) return;
+  track('export', {format: btn.dataset.format});
   exportPalette(btn.dataset.format);
   exportMenu.classList.remove('open');
   exportBtn.setAttribute('aria-expanded', 'false');
@@ -4739,7 +4772,7 @@ document.addEventListener('keydown', (e) => {
     exportBtn.setAttribute('aria-expanded', 'false');
   }
 });
-document.getElementById('resetBtn').addEventListener('click', resetAll);
+document.getElementById('resetBtn').addEventListener('click', () => { track('reset_all'); resetAll(); });
 
 // Capture the inbound hash BEFORE any init code writes to it.
 // setMethod() → rerender() → updateHash() persists the default state to the URL,
